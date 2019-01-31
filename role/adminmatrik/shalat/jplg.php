@@ -119,16 +119,17 @@
                                 <label for="radio_31">AKHWAT</label><br><br>   
                                 <label>Pekan ke :</label>&nbsp;
                                 <select class="form-control show-tick" name="idPeriode" required>
-                                  <?php $dataPresensi = tampilMaxTglPeriodeById();
-                                                          foreach($dataPresensi as $row){
-                                                            echo "<option selected='selected' value=''>".$row['id_periode'].". ".date('d M Y', strtotime($row['tanggal_dari']))." - ".date('d M Y', strtotime($row['tanggal_sampai']))."</option>";
-                                                          } 
+                                  <option value=''>-- Pilih Pekan --</option>
+                                  <?php $dataPekan = tampilPekan();
+                                                          foreach($dataPekan as $row){
+                                                            echo "<option value='".$row['id_pekan']."'>. ".date('d M Y', strtotime($row['tanggal_dari']))." - ".date('d M Y', strtotime($row['tanggal_sampai']))."</option>";
+                                                          }
                                                         ?>
 
-                                  <?php $dataPresensi = tampilPeriodeShalat();
+                                  <?php /*$dataPresensi = tampilPeriodeShalat();
                                                           foreach($dataPresensi as $row){
                                                             echo "<option value='".$row['id_periode']."'>".$row['id_periode'].". ".date('d M Y', strtotime($row['tanggal_dari']))." - ".date('d M Y', strtotime($row['tanggal_sampai']))."</option>";
-                                                          } 
+                                                          } */
                                                         ?>
                                           
                                         </select> 
@@ -142,7 +143,7 @@
                                     <!-- <div class="showhide">   -->
                                       <!-- <div class="controls">     -->
                                         <!-- <div class="entry"> -->
-                                          <input type="text" id="txt" class="datepicker form-control" name="tplg1" placeholder="Tanggal Pulang"/><br>
+                                          <input type="text" id="txt" class="datepicker form-control" name="tplg1" placeholder="Tanggal Pulang di Hari 1"/><br>
                                           <input type="checkbox" class="flat-red" id="check-all1">&nbsp;Semua&nbsp;&nbsp;
                                           <input type="checkbox" class="flat-red check" name="shubuh1" value="shubuh">&nbsp;Shubuh&nbsp;&nbsp;
                                           <input type="checkbox" class="flat-red check" name="dzuhur1" value="dzuhur">&nbsp;Dzuhur&nbsp;&nbsp;
@@ -159,7 +160,7 @@
                                       <!-- </div> -->
                                     <!-- </div>                           -->
                                     <label>Hari 2 :</label>&nbsp;
-                                          <input type="text" id="txt" class="datepicker form-control" name="tplg2" placeholder="Tanggal Pulang"/><br>
+                                          <input type="text" id="txt" class="datepicker form-control" name="tplg2" placeholder="Tanggal Pulang di Hari 2"/><br>
                                           <input type="checkbox" class="flat-red" id="check-all2">&nbsp;Semua&nbsp;&nbsp;
                                           <input type="checkbox" class="flat-red check2" name="shubuh2" value="shubuh">&nbsp;Shubuh&nbsp;&nbsp;
                                           <input type="checkbox" class="flat-red check2" name="dzuhur2" value="dzuhur">&nbsp;Dzuhur&nbsp;&nbsp;

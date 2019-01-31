@@ -437,7 +437,7 @@
                     <li class="header">ADMINISTRATIF</li>
                     <li <?php 
                           if (isset($_GET['page'])) {
-                              if ($_GET['page'] == 'jplg' || $_GET['page'] == 'jplgdetail') {
+                              if ($_GET['page'] == 'jplg') {
                                 echo "class='active'";
                               } else{
                                 echo '';
@@ -463,7 +463,7 @@
                     </li>
                     <li <?php 
                           if (isset($_GET['page'])) {
-                              if ($_GET['page'] == 'jplg' || $_GET['page'] == 'jplgdetail') {
+                              if ($_GET['page'] == 'pekan') {
                                 echo "class='active'";
                               } else{
                                 echo '';
@@ -478,12 +478,12 @@
                         <ul class="ml-menu">
                             <li  <?php 
                                   if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'jplg' || $_GET['page'] == 'jplgdetail') {
+                                    if ($_GET['page'] == 'pekan') {
                                       echo "class='active'";
                                     }
                                   }
                                 ?>
-                              ><a href="?page=jplg">Data Pekan</a>
+                              ><a href="?page=pekan">Data Pekan</a>
                             </li>
                         </ul>
                     </li>

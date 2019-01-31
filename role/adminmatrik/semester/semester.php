@@ -17,8 +17,8 @@
                                         <thead>
                                           <tr>
                                             <th>#</th>
-                                            <th>Semester</th>
                                             <th>Angkatan</th>
+                                            <th>Semester</th>
                                             <th>Tanggal Dari</th>
                                             <th>Tanggal Sampai</th>
                                           </tr>
@@ -32,8 +32,8 @@
                                            ?>
                                         <tr>
                                           <td><b><?php echo $no ?></b></td>  
-                                          <td><?php echo $row['semester'];?></td>
                                           <td><?php echo $row['angkatan'] ?></td>
+                                          <td><?php echo $row['semester'];?></td>
                                           <td><?php echo $row['tanggal_dari'] ?></td>
                                           <td><?php echo $row['tanggal_sampai'] ?></td>
                                         </tr>
@@ -194,9 +194,7 @@
     <script>
     $(document).ready(function() {
       var t = $('#DataSemester').DataTable( {
-            "columnDefs": [
-              { "searchable": false, "orderable": false, "targets": [0,6]}
-            ]
+            
         } );
 
     } );

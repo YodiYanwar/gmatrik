@@ -80,7 +80,9 @@
 	}	
 
 	function tampilJplg(){
-		$ambildata = mysql_query("SELECT jp.id_pekan, sp.tanggal_dari, sp.tanggal_sampai, jp.j_kelamin, COUNT(jp.wkt_shalat) AS jws FROM j_pulang2 jp LEFT JOIN shalat_periode sp ON jp.id_periode = sp.id_periode GROUP BY jp.id_periode ORDER BY jp.id_periode DESC") or die(mysql_error());
+		// $ambildata = mysql_query("SELECT jp.id_pekan, sp.tanggal_dari, sp.tanggal_sampai, jp.j_kelamin, COUNT(jp.wkt_shalat) AS jws FROM j_pulang2 jp LEFT JOIN shalat_periode sp ON jp.id_periode = sp.id_periode GROUP BY jp.id_periode ORDER BY jp.id_periode DESC") or die(mysql_error());
+
+		$ambildata = mysql_query("SELECT jp.* FROM jadwal_pulang jp") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -114,7 +116,6 @@
 	}
 
 	function tampilSemester(){
-		// $ambildata = mysql_query("SELECT mahasiswa.*, users.* FROM users INNER JOIN mahasiswa ON mahasiswa.id_user = users.id_user ORDER BY nama") or die(mysql_error());
 		$ambildata = mysql_query("SELECT s.* FROM semester s ORDER BY s.id_semester DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
@@ -124,6 +125,17 @@
 			echo "Data semester kosong";
 		}		
 	}
+
+	function tampilPekan(){
+		$ambildata = mysql_query("SELECT p.* FROM pekan p ORDER BY p.id_pekan") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} else{
+			echo "Data semester kosong";
+		}		
+	}	
 
 	function tampilMahasiswaById($idMahasiswa){
 		$ambildata = mysql_query("SELECT m.*, u.*, p.id_pembina AS idp, p.nama AS namap FROM users u INNER JOIN mahasiswa m ON m.id_user = u.id_user LEFT JOIN m_binaan mb ON m.id_mahasiswa = mb.id_mahasiswa LEFT JOIN pembina p ON mb.id_pembina = p.id_pembina WHERE m.id_mahasiswa = $idMahasiswa ORDER BY m.nama") or die(mysql_error());
