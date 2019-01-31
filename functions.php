@@ -51,9 +51,9 @@
 		mysql_query("UPDATE mahasiswa m SET m.j_kelamin=(SELECT p.j_kelamin FROM pembina p WHERE p.id_pembina = $idPembina) WHERE m.id_mahasiswa = $idMahasiswa;");
 	}
 
-	function tambahJplg($tgl, $jKelamin, $wkt){
+	function tambahJplg($tgl, $gender, $shubuh, $dzuhur, $ashar, $maghrib, $isya){
 		$tgl_ = date('Y-m-d', strtotime($tgl));
-		mysql_query("INSERT INTO j_pulang2 (id_periode, tanggal, j_kelamin, wkt_shalat) VALUES ((SELECT s.id_periode FROM shalat s WHERE s.tanggal = '$tgl_' GROUP BY s.id_periode), '$tgl_', '$jKelamin', '$wkt');");
+		mysql_query("INSERT INTO jadwal_pulang (id_pekan, tanggal, gender, shubuh, dzuhur, ashar, maghrib, isya) VALUES ( ((SELECT p.id_pekan FROM pekan p WHERE '$tgl' BETWEEN p.tanggal_dari AND p.tanggal_sampai)), '$tgl_', '$gender', '$shubuh', '$dzuhur', '$ashar', '$maghrib', '$isya');");
 	}
 
 	function tampilPembina(){
@@ -80,9 +80,7 @@
 	}	
 
 	function tampilJplg(){
-		// $ambildata = mysql_query("SELECT jp.id_pekan, sp.tanggal_dari, sp.tanggal_sampai, jp.j_kelamin, COUNT(jp.wkt_shalat) AS jws FROM j_pulang2 jp LEFT JOIN shalat_periode sp ON jp.id_periode = sp.id_periode GROUP BY jp.id_periode ORDER BY jp.id_periode DESC") or die(mysql_error());
-
-		$ambildata = mysql_query("SELECT jp.* FROM jadwal_pulang jp") or die(mysql_error());
+		$ambildata = mysql_query("SELECT jp.id_pekan, s.semester, p.pekan, jp.tanggal, CONCAT(IF(jp.shubuh = 1, 'shubuh, ', ''), IF(jp.dzuhur = 1, 'dzuhur, ', ''), IF(jp.ashar = 1, 'ashar, ', ''), IF(jp.maghrib = 1, 'maghrib, ', ''), IF(jp.isya = 1, 'isya, ', '')) AS waktu_shalat, jp.gender, jp.shubuh+jp.dzuhur+jp.ashar+jp.maghrib+jp.isya AS jws FROM jadwal_pulang jp LEFT JOIN pekan p ON jp.id_pekan = p.id_pekan LEFT JOIN semester s ON p.id_semester = s.id_semester GROUP BY jp.tanggal") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
