@@ -3,8 +3,8 @@
 	include 'functions.php';
 
 // ===================================================================== Mahasiswa Role SHALAT =====================================================================
-	function tampilUdzurShalatRoleMhs($idMahasiswa){
-		$ambildata = mysql_query("SELECT su.id_periode, su.tanggal, su.udzur, COUNT(su.wkt_shalat) AS jml, su.keterangan, su.direview, su.diajukan FROM shalat_udzur2 su WHERE su.id_mahasiswa = $idMahasiswa GROUP BY su.tanggal ORDER BY su.diajukan DESC") or die(mysql_error());
+	function tampilUdzurShalatRoleMhs($nim){
+		$ambildata = mysql_query("SELECT p.pekan, us.tanggal, us.nim, m.nama, us.waktu_shalat, us.udzur, us.diajukan, us.disetujui FROM udzur_shalat us LEFT JOIN mahasiswa m ON m.nim = us.nim LEFT JOIN pekan p ON us.id_pekan = p.id_pekan WHERE us.nim = $nim ORDER BY us.diajukan DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -186,9 +186,9 @@
 		}		
 	}	
 
-	function tambahUdzurShalat($idMahasiswa, $tgl, $wkt, $udzur, $ket){
+	function tambahUdzurShalat($nim, $tgl, $wkt, $udzur){
 		$tgl_ = date('Y-m-d', strtotime($tgl));
-		mysql_query("INSERT INTO shalat_udzur2 (id_periode, id_mahasiswa, tanggal, wkt_shalat, udzur, keterangan, diajukan, disetujui, direview) VALUES ( (SELECT id_periode FROM shalat WHERE tanggal = '$tgl_' GROUP BY id_periode), $idMahasiswa, '$tgl_', '$wkt', '$udzur', '$ket', now(), 0,0 )") or die(mysql_error());
+		mysql_query("INSERT INTO udzur_shalat (nim, id_pekan, tanggal, waktu_shalat, udzur, diajukan, disetujui) VALUES ( '$nim', (SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai), '$tgl', '$wkt', '$udzur', now(), 0 )") or die(mysql_error());
 	}	
 
 	function tambahUdzurTahsin($idTahsin, $idMahasiswa, $udzur, $ket){
@@ -449,13 +449,13 @@
 				return $data;			
 	}		
 
-	function tampilSemester(){
+/*	function tampilSemester(){
 		$ambildata = mysql_query("SELECT * FROM semester s ") or die(mysql_error());
 
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
 				return $data;			
-	}			
+	}	*/		
 
 	function tampilTargetHafalan(){
 		$ambildata = mysql_query("SELECT th.id, j.juz, j.deskripsi AS nama_juz, COUNT(s.id_juz) AS jumlah_surah, sm.semester, sm.dari, sm.sampai FROM target_hafalan th LEFT JOIN juz j ON th.id_juz = j.id LEFT JOIN surah s ON j.id = s.id_juz LEFT JOIN semester sm ON th.id_semester = sm.id GROUP BY th.id_juz") or die(mysql_error());

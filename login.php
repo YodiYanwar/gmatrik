@@ -131,7 +131,7 @@ if(isset($_POST['login'])){
           $nama = $pembina['nama'];
           $gelar = $pembina['gelar'];
           // $email = $pembina['email'];
-          $telp = $pembina['telp'];
+          $telp = $pembina['telepon'];
           $gender = $pembina['gender'];
           
           echo '<script language="javascript">document.location="index.php";</script>';
@@ -164,12 +164,12 @@ if(isset($_POST['login'])){
       $sql_profil = mysql_query("SELECT * FROM mahasiswa WHERE id_user = $id") or die(mysql_error());
 
         while($mahasiswa = mysql_fetch_assoc($sql_profil)){
-          $ava = $mahasiswa['avatar'];
-          $id_mahasiswa = $mahasiswa['id_mahasiswa'];
+          // $ava = $mahasiswa['avatar'];
+          $nim = $mahasiswa['nim'];
           $nama = $mahasiswa['nama'];
-          $email = $mahasiswa['email'];
-          $telp = $mahasiswa['telp'];
-          $gender = $mahasiswa['j_kelamin'];
+          // $email = $mahasiswa['email'];
+          $telp = $mahasiswa['telepon'];
+          $gender = $mahasiswa['gender'];
           
           echo '<script language="javascript">document.location="index.php";</script>';
         }
@@ -185,14 +185,14 @@ if(isset($_POST['login'])){
             $_SESSION['ava'] ='default.png';
           }
         } else{
-          $_SESSION['ava'] = $ava;
+          // $_SESSION['ava'] = $ava;
         } 
 
-        $_SESSION['id_mahasiswa'] = $id_mahasiswa;
+        $_SESSION['nim'] = $nim;
         $_SESSION['nama'] = $nama;
         $_SESSION['rolename'] = 'Mahasiswa';
         $_SESSION['username'] = $user; 
-        $_SESSION['jKelamin'] = $gender;
+        $_SESSION['gender'] = $gender;
         $_SESSION['role'] = 'mahasiswa';
 
       //$_SESSION['nama'] = $row['nama'];

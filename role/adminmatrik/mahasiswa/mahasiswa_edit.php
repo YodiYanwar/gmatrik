@@ -101,17 +101,17 @@
                                         <select class="form-control show-tick" name="aktif" required>
                                           <?php 
                                             if ($row['aktif'] == 0) {
-                                              echo "<option>Aktif</option>
-                                                    <option>Nonaktif</option>";
+                                              echo "<option value=1>Aktif</option>
+                                                    <option selected='selected' value=0>Nonaktif</option>";
                                             } else
                                             if($row['aktif'] == 1){
-                                              echo "<option>Nonaktif</option>
-                                                    <option>Aktif</option>";
+                                              echo "<option value=0>Nonaktif</option>
+                                                    <option selected='selected' value=1>Aktif</option>";
                                             } else
                                             if($row['aktif'] == NULL){
                                               echo "<option selected='selected' value=''>-- Aktif/Tidak Aktif --</option>
-                                                    <option>Aktif</option>
-                                                    <option>Nonaktif</option>";
+                                                    <option value=1>Aktif</option>
+                                                    <option value=0>Nonaktif</option>";
                                             }
                                          ?>
                                         </select>                                            
