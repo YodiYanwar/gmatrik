@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2019 at 11:04 AM
+-- Generation Time: Jan 31, 2019 at 04:15 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -474,6 +474,13 @@ CREATE TABLE `pekan` (
   `tanggal_dari` date NOT NULL,
   `tanggal_sampai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pekan`
+--
+
+INSERT INTO `pekan` (`id_pekan`, `id_semester`, `tanggal_dari`, `tanggal_sampai`) VALUES
+(1, 2, '2018-11-23', '2018-11-29');
 
 -- --------------------------------------------------------
 
@@ -1113,6 +1120,15 @@ CREATE TABLE `semester` (
   `tanggal_sampai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `semester`
+--
+
+INSERT INTO `semester` (`id_semester`, `angkatan`, `semester`, `tanggal_dari`, `tanggal_sampai`) VALUES
+(1, 0, 1, '0000-00-00', '0000-00-00'),
+(2, 0, 1, '0000-00-00', '0000-00-00'),
+(3, 18, 2, '2019-01-06', '2019-01-04');
+
 -- --------------------------------------------------------
 
 --
@@ -1215,7 +1231,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `level`, `terakhir_login`) VALUES
-(1, 'adminmatrik', 'bismillah', 0, 1, '2019-01-30 14:01:34'),
+(1, 'adminmatrik', 'bismillah', 0, 1, '2019-01-31 09:00:01'),
 (2, 'hamid', 'j0n50jPn61', 1, 2, '2019-01-30 14:52:16'),
 (3, '18000372', 'mahasiswa123', 0, 3, NULL),
 (4, 'hasan', 'hasan123', 0, 4, NULL),
@@ -1750,7 +1766,7 @@ ALTER TABLE `adminmatrikulasi`
 -- AUTO_INCREMENT for table `pekan`
 --
 ALTER TABLE `pekan`
-  MODIFY `id_pekan` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pekan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pembina_mahasiswa`
 --
@@ -1765,7 +1781,7 @@ ALTER TABLE `pimpinan`
 -- AUTO_INCREMENT for table `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `id_semester` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_semester` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tahsin`
 --
