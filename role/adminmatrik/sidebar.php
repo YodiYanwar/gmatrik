@@ -586,7 +586,7 @@
                     </li>
                     <li <?php 
                                   if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'user') {
+                                    if ($_GET['page'] == 'user' || $_GET['page'] == 'ubahpassword') {
                                       echo "class='active'";
                                     }
                                   }
@@ -605,6 +605,15 @@
                                   }
                                 ?>
                             ><a href="?page=user">Data User</a>
+                            </li>
+                            <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'ubahpassword') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            ><a href="?page=ubahpassword" data-toggle="modal">Ubah Password Saya</a>
                             </li>
                         </ul>
                     </li>
@@ -783,6 +792,10 @@
               include 'pimpinan/pimpinan_edit.php';
             } else if ($_GET['page'] == 'semester') {
               include 'semester/semester.php';
+            } else if ($_GET['page'] == 'pekan') {
+              include 'pekan/pekan.php';
+            } else if ($_GET['page'] == 'ubahpassword') {
+              include 'user/ubahpassword.php';
             }
         } else{
             include 'dashboard.php';
@@ -790,3 +803,37 @@
 
     ?>
 </section>
+
+
+<div class="modal fade" id="ModalGantiPass" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm">
+                  <form class="form-horizontal" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">GANTI PASSWORD</h4>
+                        </div>
+                        <div class="modal-body">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" name="pass" id="pwinput2" pattern=".{0}|.{8,}" title="8 Karakter Minimal" required>
+                                            <label class="form-label">Password Baru : </label>
+                                        </div>
+                                    </div>
+                               <br><br>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" name="passConf" id="pwinput3" pattern=".{0}|.{8,}" title="8 Karakter Minimal" required>
+                                            <label class="form-label">Konfirmasi Password : </label>
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-ok waves-effect" name="gantiPass">SIMPAN</button>
+                            <button class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+            </div> 
+
+          

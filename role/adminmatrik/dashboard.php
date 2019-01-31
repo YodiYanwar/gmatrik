@@ -12,6 +12,7 @@
                 <h2>DASHBOARD</h2>
             </div>
             <!-- Widgets -->
+
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="info-box-2 bg-blue">

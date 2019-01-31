@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="header">
                           <h2>DATA SEMESTER &nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahDataSemester" title="Tambah Data Semester"><i class="material-icons">get_app</i><span>TAMBAH DATA</span></button>
+                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahDataSemester" title="Tambah Data Semester"><i class="material-icons">add</i><span>TAMBAH DATA</span></button>
                             <!-- <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#importMhsModal" title="Tambah Data Mahasiswa"><i class="material-icons">get_app</i><span>IMPORT DATA</span></button> -->
                           </h2>
                         </div>
@@ -34,8 +34,8 @@
                                           <td><b><?php echo $no ?></b></td>  
                                           <td><?php echo $row['angkatan'] ?></td>
                                           <td><?php echo $row['semester'];?></td>
-                                          <td><?php echo $row['tanggal_dari'] ?></td>
-                                          <td><?php echo $row['tanggal_sampai'] ?></td>
+                                          <td><?php echo date('d M Y', strtotime($row['tanggal_dari'])); ?></td>
+                                          <td><?php echo date('d M Y', strtotime($row['tanggal_sampai'])); ?></td>
                                         </tr>
                                           <?php 
                                             $no++; }
@@ -55,7 +55,7 @@
                   <form class="form-horizontal" method="POST">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">Tambah Data Semester</h4>
+                            <h4 class="modal-title" id="defaultModalLabel">Input Data Semester</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row clearfix">

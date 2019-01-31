@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="header">
                           <h2>DATA PEMBINA MAHASISWA &nbsp;&nbsp;&nbsp;
-                          <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahPembina" title="Tambah Data Pembina Mahasiswa"><i class="material-icons">get_app</i><span>TAMBAH DATA</span></button>
+                          <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahPembina" title="Tambah Data Pembina Mahasiswa"><i class="material-icons">add</i><span>TAMBAH DATA</span></button>
                         </div>
                         <div class="body ">
                         	<div class="table-responsive">

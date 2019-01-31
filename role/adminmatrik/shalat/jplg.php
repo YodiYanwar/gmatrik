@@ -6,8 +6,8 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                          <h2>DATA JADWAL KEPULANGAN MAHASISWA &nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahJplg" title="Tambah Data Jadwal Kepulangan"><i class="material-icons">playlist_add</i><span>TAMBAH DATA</span></button>
+                          <h2>DATA JADWAL KEPULANGAN &nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahJplg" title="Tambah Data Jadwal Kepulangan"><i class="material-icons">add</i><span>TAMBAH DATA</span></button>
                           </h2>
                         </div>
                         <div class="body">                               
@@ -15,6 +15,7 @@
                             <table id="tableJplg" class="table table-hover table-condensed">
                               <thead>
                                 <tr>
+                                  <th>#</th>
                                   <th>Pekan ke</th>
                                   <th>Tanggal</th>
                                   <th>Ikhwan/Akhwat</th>
@@ -26,16 +27,19 @@
                                 <?php 
                                   
                                   $dataPresensi = tampilJplg();
+                                  $no = 1;
                                   foreach($dataPresensi as $row){
+
                                  ?>
                                 <tr>
+                                  <td><b><?php echo $no; ?></b></td>  
                                   <td><?php echo $row['pekan']; ?></td>
-                                  <td><?php echo $row['tanggal']; ?></td>
+                                  <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
                                   <td><?php echo $row['gender']; ?></td>
                                   <td><?php echo $row['waktu_shalat']; ?></td>
                                   <td><?php echo $row['jws']; ?></td>
                                 </tr>
-                                <?php  } ?>
+                                <?php $no++; } ?>
                               </tbody> 
                             </table>
                           </div>                        

@@ -125,13 +125,13 @@
 	}
 
 	function tampilPekan(){
-		$ambildata = mysql_query("SELECT p.* FROM pekan p ORDER BY p.id_pekan") or die(mysql_error());
+		$ambildata = mysql_query("SELECT p.pekan, p.tanggal_dari, p.tanggal_sampai, s.semester FROM pekan p LEFT JOIN semester s ON p.id_semester = s.id_semester ORDER BY p.id_pekan") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
 				return $data;
 		} else{
-			echo "Data semester kosong";
+			echo "Data pekan kosong";
 		}		
 	}	
 

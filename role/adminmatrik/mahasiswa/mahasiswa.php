@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="header">
                           <h2>DATA MAHASISWA &nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahDataMahasiswa" title="Tambah Data Mahasiswa"><i class="material-icons">get_app</i><span>TAMBAH DATA</span></button>
+                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahDataMahasiswa" title="Tambah Data Mahasiswa"><i class="material-icons">add</i><span>TAMBAH DATA</span></button>
                             <!-- <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#importMhsModal" title="Tambah Data Mahasiswa"><i class="material-icons">get_app</i><span>IMPORT DATA</span></button> -->
                           </h2>
                         </div>
@@ -21,7 +21,7 @@
                                             <th>NIM</th>
                                             <th>Nama</th>
                                             <th>Ikhwan/Akhwat</th>
-                                            <th>Pembina</th>
+                                            <th>Pembina Mahasiswa</th>
                                             <th>Angkatan</th>
                                             <th>Kota Asal</th>
                                             <th>Telepon</th>
