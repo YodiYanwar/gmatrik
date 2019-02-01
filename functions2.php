@@ -74,7 +74,7 @@
 	}		
 
 	function tampilTalim($idPembina){
-		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.talim, t.tanggal, t.deskripsi, COUNT(pt.nim) AS jml FROM talim t LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = $idPembina ORDER BY t.tanggal DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.talim, t.tanggal, t.deskripsi, r.jml FROM talim t LEFT JOIN ( SELECT pt.id_talim, COUNT(pt.nim) AS jml FROM presensi_talim pt GROUP BY pt.id_talim ) r ON t.id_talim = r.id_talim LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = $idPembina GROUP BY t.id_talim ORDER BY t.tanggal DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
