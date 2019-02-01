@@ -34,7 +34,7 @@ var addFormGroup  = function (event) {
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                          <h2>DATA UDZUR TAHSIN/TAHFIDZ &nbsp;&nbsp;&nbsp;
+                          <h2>DATA UDZUR TA'LIM &nbsp;&nbsp;&nbsp;
                           </h2>
                         </div>
                         <div class="body">                               
@@ -45,7 +45,7 @@ var addFormGroup  = function (event) {
                                   <th>#</th>
                                   <th>Nama Mahasiswa</th>
                                   <th>Tanggal</th>
-                                  <th>Tahsin</th>
+                                  <th>Ta'lim</th>
                                   <th>Udzur</th>
                                   <th>Keterangan</th>
                                   <th>Diajukan</th>
@@ -55,7 +55,7 @@ var addFormGroup  = function (event) {
                               <tbody>
                                 <?php 
                                   
-                                  $dataUdzur = tampilUdzurTahsinRolePembina($idPembina);
+                                  $dataUdzur = tampilUdzurTalimRolePembina($idPembina);
                                   $no = 1;
                                   if (is_array($dataUdzur) || is_object($dataUdzur)){
                                     foreach($dataUdzur as $row){
@@ -64,11 +64,11 @@ var addFormGroup  = function (event) {
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo $row['nama']; ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php echo $row['tahsin']; ?></td>
+                                  <td><?php echo $row['talim']; ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['keterangan']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>
-                                  <td><?php if($row['disetujui'] == 1){echo 'Disetujui';}else if($row['disetujui'] == 2){echo 'Ditolak';}else if($row['disetujui'] == 0){echo "<a href='#setujuUdzurTahsin' data-toggle='modal' class='btn btn-xs bg-green' data-href='action/hapus.php?sudzurtahsin=".$row['id_udzur']."'>Ya</a>&nbsp;<a href='#tolakUdzurTahsin' data-toggle='modal' class='btn btn-xs bg-red' data-href='action/hapus.php?tudzurtahsin=".$row['id_udzur']."'>Tolak</a>";} ?></td>
+                                  <td><?php if($row['disetujui'] == 1){echo 'Disetujui';}else if($row['disetujui'] == 2){echo 'Ditolak';}else if($row['disetujui'] == 0){echo "<a href='#setujuUdzurTalim' data-toggle='modal' class='btn btn-xs bg-green' data-href='action/hapus.php?sudzurtalim=".$row['id_udzur']."'>Ya</a>&nbsp;<a href='#tolakUdzurTalim' data-toggle='modal' class='btn btn-xs bg-red' data-href='action/hapus.php?tudzurtalim=".$row['id_udzur']."'>Tolak</a>";} ?></td>
                                 </tr>
                                 <?php $no++; } } ?>
                               </tbody> 
@@ -86,11 +86,11 @@ var addFormGroup  = function (event) {
     } );
     </script> 
 
-            <div class="modal fade" id="setujuUdzurTahsin" tabindex="-1" role="dialog">
+            <div class="modal fade" id="setujuUdzurTalim" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">Setujui Pengajuan Udzur Tahsin/Tahfidz?</h4>
+                            <h4 class="modal-title" id="smallModalLabel">Setujui Pengajuan Udzur Ta'lim?</h4>
                         </div>
                         <div class="modal-footer">
                             <a type="button" class="btn btn-success btn-ok waves-effect">SETUJU</a>
@@ -100,11 +100,11 @@ var addFormGroup  = function (event) {
                 </div>
             </div>  
 
-            <div class="modal fade" id="tolakUdzurTahsin" tabindex="-1" role="dialog">
+            <div class="modal fade" id="tolakUdzurTalim" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">Tolak Pengajuan Udzur Tahsin/Tahfidz?</h4>
+                            <h4 class="modal-title" id="smallModalLabel">Tolak Pengajuan Udzur Ta'lim?</h4>
                         </div>
                         <div class="modal-footer">
                             <a type="button" class="btn btn-danger btn-ok waves-effect">TOLAK</a>

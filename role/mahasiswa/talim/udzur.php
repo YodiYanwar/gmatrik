@@ -34,8 +34,8 @@ var addFormGroup  = function (event) {
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                          <h2>DATA UDZUR TAHSIN/TAHFIDZ &nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahUdzur" title="Input Pengajuan Udzur Tahsin/Tahfidz"><i class="material-icons">add</i><span>TAMBAH DATA</span></button>
+                          <h2>DATA UDZUR TALIM &nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahUdzur" title="Input Pengajuan Udzur Ta'lim"><i class="material-icons">add</i><span>TAMBAH DATA</span></button>
                           </h2>
                         </div>
                         <div class="body">                               
@@ -45,7 +45,7 @@ var addFormGroup  = function (event) {
                                 <tr>
                                   <th>#</th>
                                   <th>Hari - Tanggal</th>
-                                  <th>Tahsin</th>
+                                  <th>Ta'lim</th>
                                   <th>Udzur</th>
                                   <th>Keterangan</th>
                                   <th>Diajukan</th>
@@ -55,7 +55,7 @@ var addFormGroup  = function (event) {
                               <tbody>
                                 <?php 
                                   
-                                  $dataUdzur = tampilUdzurTahsinRoleMhs($nim);
+                                  $dataUdzur = tampilUdzurTalimRoleMhs($nim);
                                   $no = 1;
                                   if (is_array($dataUdzur) || is_object($dataUdzur)){
                                     foreach($dataUdzur as $row){
@@ -63,7 +63,7 @@ var addFormGroup  = function (event) {
                                 <tr>
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php echo $row['tahsin']; ?></td>
+                                  <td><?php echo $row['talim']; ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['keterangan']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>
@@ -86,12 +86,12 @@ var addFormGroup  = function (event) {
                       </div>
                       <div class="modal-body">
                           <div class="form-group multiple-form-group" id="defaultForm">          
-                                      <label>Tanggal :</label><br>
-                                        <select class="form-control show-tick" data-live-search="true" name="idTahsin" required>
-                                          <option value="">-- Pilih Tahsin --</option>
-                                                        <?php $t = tampilTahsinForUdzurRoleMhs($nim);
+                                      <label>Udzur Pada Ta'lim :</label><br>
+                                        <select class="form-control show-tick" data-live-search="true" name="idTalim" required>
+                                          <option value="">-- Pilih Ta'lim --</option>
+                                                        <?php $t = tampilTalimForUdzurRoleMhs($nim);
                                                           foreach($t as $row){
-                                                            echo '<option value="'.$row['id_tahsin'].'">'.date('d/m/Y', strtotime($row['tanggal'])).' - '.$row['tahsin'].'</option>';
+                                                            echo '<option value="'.$row['id_talim'].'">'.$row['talim'].' - '.date('d/m/Y', strtotime($row['tanggal'])).'</option>';
                                                           } 
                                                         ?>
                                         </select> 
@@ -139,8 +139,8 @@ var addFormGroup  = function (event) {
 
     <?php 
         if (isset($_POST['submitUdzur'])) {
-          tambahUdzurTahsin($_POST['idTahsin'], $nim, $_POST['udzur'], $_POST['keterangan']);
+          tambahUdzurTalim($_POST['idTalim'], $nim, $_POST['udzur'], $_POST['keterangan']);
 
-        echo "<script>document.location='index.php?page=udzurtahsin'</script>";
+        echo "<script>document.location='index.php?page=udzurtalim'</script>";
       }
     ?>

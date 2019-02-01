@@ -395,19 +395,45 @@
             });
         });     
 
-        //Modal Reset Password ke Default
+        
         $(document).ready(function() {
             $('#tolakUdzurShalat').on('show.bs.modal', function(e) {
                 $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
             });
         });         
         
-        //Modal Reset Password ke Default
+        
         $(document).ready(function() {
             $('#setujuUdzurShalat').on('show.bs.modal', function(e) {
                 $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
             });
         });           
+
+        $(document).ready(function() {
+            $('#tolakUdzurTahsin').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+        });         
+        
+        
+        $(document).ready(function() {
+            $('#setujuUdzurTahsin').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+        });    
+
+        $(document).ready(function() {
+            $('#tolakUdzurTalim').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+        });         
+        
+        
+        $(document).ready(function() {
+            $('#setujuUdzurTalim').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+        });         
 
         //Modal Reset Password ke Default
         $(document).ready(function() {

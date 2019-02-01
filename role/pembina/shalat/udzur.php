@@ -18,7 +18,7 @@
                               <thead>
                                 <tr>
                                   <th>#</th>
-                                  <th>Hari - Tanggal</th>
+                                  <th>Tanggal</th>
                                   <th>Nama Mahasiswa</th>
                                   <th>Udzur</th>
                                   <th>Waktu Shalat</th>
@@ -79,7 +79,7 @@
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">Setujui Pengajuan Udzur ?</h4>
+                            <h4 class="modal-title" id="smallModalLabel">Setujui Pengajuan Udzur Shalat?</h4>
                         </div>
                         <div class="modal-footer">
                             <a type="button" class="btn btn-success btn-ok waves-effect">SETUJU</a>
@@ -93,7 +93,7 @@
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">Tolak Pengajuan Udzur ?</h4>
+                            <h4 class="modal-title" id="smallModalLabel">Tolak Pengajuan Udzur Shalat?</h4>
                         </div>
                         <div class="modal-footer">
                             <a type="button" class="btn btn-danger btn-ok waves-effect">TOLAK</a>

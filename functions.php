@@ -1213,4 +1213,40 @@
 		} 	
 	}		
 
+	function setujuUdzurTahsin($idUdzur){
+		$ambildata = mysql_query("UPDATE udzur_tahsin SET disetujui = 1 WHERE id_udzur = $idUdzur") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 	
+	}			
+
+	function tolakUdzurTahsin($idUdzur){
+		$ambildata = mysql_query("UPDATE udzur_tahsin SET disetujui = 2 WHERE id_udzur = $idUdzur") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 	
+	}	
+
+	function setujuUdzurTalim($idUdzur){
+		$ambildata = mysql_query("UPDATE udzur_talim SET disetujui = 1 WHERE id_udzur = $idUdzur") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 	
+	}			
+
+	function tolakUdzurTalim($idUdzur){
+		$ambildata = mysql_query("UPDATE udzur_talim SET disetujui = 2 WHERE id_udzur = $idUdzur") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 	
+	}		
+
  ?>

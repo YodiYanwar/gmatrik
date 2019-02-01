@@ -93,20 +93,38 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'udzurtalim' || $_GET['page'] == 'nilaitalim') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                      >
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">assignment</i>
                             <span>Ta'lim</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="pages/tables/normal-tables.html">Ikhtisar</a>
+                        <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'nilaitalim') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            >
+                                <a href="?page=nilaitalim">Nilai Ta'lim</a>
                             </li>
-                            <li>
-                                <a href="pages/tables/jquery-datatable.html">...</a>
-                            </li>
-                            <li>
-                                <a href="pages/tables/editable-table.html">...</a>
+                            <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'udzurtalim') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            >
+                                <a href="?page=udzurtalim">Data Udzur Ta'lim</a>
                             </li>
                         </ul>
                     </li>
@@ -122,53 +140,15 @@
                             <span>Tahsin/Tahfidz</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="javascript:void(0);"><span>Ikhtisar</span></a>
-                            </li>
-                            <li <?php 
+                        <li <?php 
                                   if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'tahsinm') {
+                                    if ($_GET['page'] == 'nilaitahsin') {
                                       echo "class='active'";
                                     }
                                   }
                                 ?>
-                            ><a href="?page=tahsinm"><span>Berdasar Mahasiswa</span></a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'tahsint') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                            ><a href="?page=tahsint"><span>Berdasar Tahsin</span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Hafalan Quran</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Berdasar Mahasiswa</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Berdasar Juz</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Berdasar Surah</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Berdasar Jumlah Ayat</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                            >
+                                <a href="?page=nilaitahsin">Nilai Tahsin/Tahfidz</a>
                             </li>
                             <li <?php 
                                   if (isset($_GET['page'])) {
@@ -178,33 +158,7 @@
                                   }
                                 ?>
                             >
-                                <a href="?page=udzurtahsin">
-                                    <span>Udzur</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="header">KOMISI DISIPLIN</li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">gavel</i>
-                            <span>Pelanggaran</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Ikhtisar</a>
-                            </li>
-                            <li>
-                                <a href="#">Bentuk Pelanggaran</a>
-                            </li>
-                            <li>
-                                <a href="#">Aksi Pelanggaran</a>
-                            </li>
-                            <li>
-                                <a href="#">Sanksi</a>
-                            </li>
-                            <li>
-                                <a href="#">Tindak Lanjut</a>
+                                <a href="?page=udzurtahsin">Data Udzur Tahsin/Tahfidz</a>
                             </li>
                         </ul>
                     </li>
@@ -299,6 +253,8 @@
 	            include 'pelanggaran/planjut_detail.php';
 	          } else if ($_GET['page'] == 'udzurtahsin') {
               include 'tahsin/udzur.php';
+            } else if ($_GET['page'] == 'udzurtalim') {
+              include 'talim/udzur.php';
             }
         } else{
             include 'dashboard.php';

@@ -86,5 +86,29 @@ include '../functions.php';
 
 	    tolakUdzurShalat($idUdzur);
 	    header('location:/gmatrik/index.php?page=udzurslt'); 
+	} else
+	if(isset($_GET['sudzurtahsin'])){
+		$idUdzur = $_GET['sudzurtahsin'];
+
+	    setujuUdzurTahsin($idUdzur);
+	    header('location:/gmatrik/index.php?page=udzurtahsin'); 
+	} else
+	if(isset($_GET['tudzurtahsin'])){
+		$idUdzur = $_GET['tudzurtahsin'];
+
+	    tolakUdzurTahsin($idUdzur);
+	    header('location:/gmatrik/index.php?page=udzurtahsin'); 
+	} else
+	if(isset($_GET['sudzurtalim'])){
+		$idUdzur = $_GET['sudzurtalim'];
+
+	    setujuUdzurTalim($idUdzur);
+	    header('location:/gmatrik/index.php?page=udzurtalim'); 
+	} else
+	if(isset($_GET['tudzurtalim'])){
+		$idUdzur = $_GET['tudzurtalim'];
+
+	    tolakUdzurTalim($idUdzur);
+	    header('location:/gmatrik/index.php?page=udzurtalim'); 
 	}
  ?>

@@ -166,7 +166,7 @@ $(document).on('click', '.btn-add', addFormGroup);
                                 <!-- <input name="udzur" type="radio" class="radiojk" id="haid" value="Haid"/>
                                 <label for="sakit">Haid</label>&nbsp;&nbsp; -->
                                 <label>Udzur :</label><br>
-                                <input name="udzur" type="radio" class="radiojk" id="hujan" value="Hujan"/>
+                                <input name="udzur" type="radio" class="radiojk" id="hujan" value="Hujan" required/>
                                 <label for="hujan">Hujan</label>&nbsp;&nbsp;
 
                                 <input name="udzur" type="radio" class="radiojk" id="izin" value="Izin Syar'i"/>
