@@ -125,8 +125,53 @@
 	}
 
 	function tambahSemester($angkatan, $semester, $tanggaldari, $tanggalsampai){
-		generatePekan($semester, $tanggaldari, $tanggalsampai);
 		mysql_query("INSERT INTO semester(angkatan, semester, tanggal_dari, tanggal_sampai) VALUES ('$angkatan','$semester','$tanggaldari','$tanggalsampai')");
+
+		date_default_timezone_set('Asia/Jakarta');
+		$timeStart = strtotime($tanggaldari);
+    $timeEnd   = strtotime($tanggalsampai);
+    $out       = [];
+    $milestones[] = $timeStart;
+    $timeEndWeek = strtotime('next Friday', $timeStart);
+    while ($timeEndWeek < $timeEnd) {
+        $milestones[] = $timeEndWeek;
+        $timeEndWeek = strtotime('+1 week', $timeEndWeek);
+    }
+    $milestones[] = $timeEnd;
+    $count = count($milestones);
+    for ($i = 1; $i < $count; $i++) {
+			if( $i == $count - 1) {
+				$dateAwal = date('Y-m-d', $milestones[$i - 1]);
+				$dateAhir = date('Y-m-d', $milestones[$i]);
+				$interval = date_diff(date_create($dateAwal), date_create($dateAhir));
+				if($interval->format('%d')==6){
+					$out[] = [
+						'start' => $milestones[$i - 1],
+						'end'   => $milestones[$i]
+					];
+				}
+			}else{
+				$dateAwal = date('Y-m-d', $milestones[$i - 1]);
+				$dateAhir = date('Y-m-d', $milestones[$i] - 1);
+				$interval = date_diff(date_create($dateAwal), date_create($dateAhir));
+				if($interval->format('%d')==6){
+					$out[] = [
+						'start' => $milestones[$i - 1],
+						'end'   => $milestones[$i] - 1
+					];
+				}
+			}
+		}
+		//hasil $out
+		$query = 'INSERT INTO pekan(pekan, id_semester, tanggal_dari, tanggal_sampai) VALUES ';
+		$query_parts = array();
+		$pekan_n = 1;
+    for($x=0; $x<count($out); $x++){
+				$query_parts[] = "(" . $pekan_n . ", ((SELECT s.id_semester FROM semester s WHERE '".date('Y-m-d', $out[$x]["start"])."' BETWEEN s.tanggal_dari AND s.tanggal_sampai)), '" . date('Y-m-d', $out[$x]["start"]) . "', '" . date('Y-m-d', $out[$x]["end"]) . "')";
+				$pekan_n++;
+    }
+		$query .= implode(',', $query_parts);
+		mysql_query($query);
 	}
 
 	function generatePekan($semester, $tanggaldari, $tanggalsampai){
@@ -167,15 +212,16 @@
 			}
 		}
 		//hasil $out
-		$query = 'INSERT INTO pekan(id_semester, pekan, tanggal_dari, tanggal_sampai) VALUES ';
-		$query_parts = array();
+		/*$query = 'INSERT INTO pekan(pekan, id_semester, tanggal_dari, tanggal_sampai) VALUES ';
+		$query_parts = array();*/
 		$pekan_n = 1;
     for($x=0; $x<count($out); $x++){
-				$query_parts[] = "('" . $semester . "', " . $pekan_n . ", '" . date('Y-m-d', $out[$x]["start"]) . "', '" . date('Y-m-d', $out[$x]["end"]) . "')";
+				$query = "INSERT INTO pekan(pekan, id_semester, tanggal_dari, tanggal_sampai) VALUES ('" . $pekan_n . "', (SELECT s.id_semester FROM semester s WHERE '".$timeStart."' BETWEEN s.tanggal_dari AND s.tanggal_sampai), '" . date('Y-m-d', $out[$x]["start"]) . "', '" . date('Y-m-d', $out[$x]["end"]) . "')";
+				mysql_query($query);
 				$pekan_n++;
     }
-		$query .= implode(',', $query_parts);
-		mysql_query($query);
+		// $query .= implode(',', $query_parts);
+		// mysql_query($query);
 	}	
 
 	function tampilPekan(){
@@ -660,8 +706,8 @@
 			if($isya_ == date('H:i:s', strtotime('00:00:00'))){$isya_ = NULL;}else{$isya_ = $isya_;}*/
 
 			//if(strpos($row_mdb['Name'], $row_mdb['Badgenumber']) === FALSE){
-			$mysql_insert_presensi = "INSERT INTO presensi_shalat(nim, tanggal, shubuh, dzuhur, ashar, maghrib, isya) VALUES 
-			(".$row_mdb['nim'].", '$tgl_', '".$shubuh_."','".$dzuhur_."','".$ashar_."','".$maghrib_."','".$isya_."');";
+			$mysql_insert_presensi = "INSERT INTO presensi_shalat(nim, id_pekan, tanggal, shubuh, dzuhur, ashar, maghrib, isya) VALUES 
+			(".$row_mdb['nim'].", ((SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai)), '$tgl_', '".$shubuh_."','".$dzuhur_."','".$ashar_."','".$maghrib_."','".$isya_."');";
 
 			mysql_query($mysql_insert_presensi);
 

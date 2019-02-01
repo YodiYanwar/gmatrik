@@ -7,7 +7,7 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="card">
                         <div class="header">
-                          <h2>IMPORT DATA PRESENSI SHALAT MAHASISWA</h2>
+                          <h2>IMPORT DATA PRESENSI SHALAT</h2>
                         </div>
                         <form method="POST">
                         <div class="body">                                
@@ -28,7 +28,7 @@
                                                             echo '<option value="'.$row['id_pekan'].'">'.$row['pekan'].'. '.date('d M Y', strtotime($row['tanggal_dari'])).' - '.date('d M Y', strtotime($row['tanggal_sampai'])).'</option>';
                                                           } 
                                                         ?>
-                                        </select>  
+                                            </select>  
                                           </div>
                                         
                                     <div class="bootstrap-timepicker">

@@ -31,8 +31,8 @@
                                           <td><b><?php echo $no ?></b></td>  
                                           <td><?php echo $row['semester'];?></td>
                                           <td><?php echo $row['pekan'] ?></td>
-                                          <td><?php echo date('d M Y', strtotime($row['tanggal_dari'])); ?></td>
-                                          <td><?php echo date('d M Y', strtotime($row['tanggal_sampai'])); ?></td>
+                                          <td><?php echo date('l - d M Y', strtotime($row['tanggal_dari'])); ?></td>
+                                          <td><?php echo date('l - d M Y', strtotime($row['tanggal_sampai'])); ?></td>
                                         </tr>
                                           <?php 
                                              $no++; }
