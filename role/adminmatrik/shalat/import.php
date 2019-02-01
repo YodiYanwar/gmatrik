@@ -15,17 +15,17 @@
                                     <!-- <div class="input-group">
                                       <label>Pekan ke :</label>
                                       <div class="form-line">
-                                        <input type="text" name="daterangeShalat" class="form-control date" id="reportrange" required>
+                                        <input type="text" name="daterangeShalat" class="form-control date" id="reportrange">
                                       </div>
                                     </div> -->
                                     
                                           <div class="form-group">
                                             <label>Pekan ke :</label>
-                                              <select class="form-control show-tick" data-live-search="true" name="idPekan" required>
+                                              <select class="form-control show-tick" data-live-search="true" name="daterangeShalat">
                                                         <option value="" selected>-- Pilih Pekan --</option>
                                                         <?php $pekan = tampilPekan();
                                                           foreach($pekan as $row){
-                                                            echo '<option value="'.$row['id_pekan'].'">'.$row['pekan'].'. '.date('d M Y', strtotime($row['tanggal_dari'])).' - '.date('d M Y', strtotime($row['tanggal_sampai'])).'</option>';
+                                                            echo '<option value="'.$row['tanggal_dari'].' '.$row['tanggal_sampai'].'">'.$row['pekan'].' ('.date('d M Y', strtotime($row['tanggal_dari'])).' - '.date('d M Y', strtotime($row['tanggal_sampai'])).')</option>';
                                                           } 
                                                         ?>
                                             </select>  
@@ -81,7 +81,7 @@
 <?php 
 
       if(isset($_POST['importPresensiShalat'])) {
-        $tgl = explode('-', $_POST['daterangeShalat']);
+        $tgl = explode(' ', $_POST['daterangeShalat']);
         $from = $tgl[0];
         $to = $tgl[1];
 
@@ -89,6 +89,12 @@
 
         $datefrom = date('Y-m-d', strtotime($from));
         $dateto = date('Y-m-d',strtotime($to));
+
+        /*echo $from.'<br>';
+        echo $to.'<br><br>';
+
+        echo $datefrom.'<br>';
+        echo $dateto.'<br><br>';*/
 
         $shubuhFrom = $_POST['shubuhFrom'];
         $shubuhTo = $_POST['shubuhTo'];

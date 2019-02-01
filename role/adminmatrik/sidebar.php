@@ -35,7 +35,7 @@
                     <li class="header">PROGRAM PEMBINAAN</li>
                     <li <?php 
                                   if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'shalat' || $_GET['page'] == 'shalatia' || $_GET['page'] == 'shalatbpembina' || $_GET['page'] == 'shalatpdetail' || $_GET['page'] == 'shalatbpembinadetail' || $_GET['page'] == 'shalatbpembinabp' || $_GET['page'] == 'shalatbpembinabpday' || $_GET['page'] == 'shalatbyday' || $_GET['page'] == 'shalatiadetail' || $_GET['page'] == 'shalatiabyperiod' || $_GET['page'] == 'shalatiabyday' || $_GET['page'] == 'shalatm'|| $_GET['page'] == 'shalatmdetail' || $_GET['page'] == 'shalatmbyperiod' || $_GET['page'] == 'shalatmbyday' || $_GET['page'] == 'shalatw' || $_GET['page'] == 'shalatwdetail' || $_GET['page'] == 'shalatwperiod' || $_GET['page'] == 'shalatwbday' || $_GET['page'] == 'importshalat' || $_GET['page'] == 'manualslt' || $_GET['page'] == 'manualsltdetail' || $_GET['page'] == 'udzurslt' || $_GET['page'] == 'udzursltdetail') {
+                                    if ($_GET['page'] == 'importshalat') {
                                       echo "class='active'";
                                     }
                                   }
@@ -54,79 +54,6 @@
                                   }
                                 ?>
                             ><a href="?page=shalat">Nilai Presensi Shalat</a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'shalat' || $_GET['page'] == 'shalatpdetail'  || $_GET['page'] == 'shalatbyday') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                            ><a href="?page=shalat">Udzur Shalat</a>
-                            </li>
-
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'shalat' || $_GET['page'] == 'shalatpdetail'  || $_GET['page'] == 'shalatbyday') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                            ><a href="?page=shalat">Ikhtisar</a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'shalatm'|| $_GET['page'] == 'shalatmdetail' || $_GET['page'] == 'shalatmbyperiod' || $_GET['page'] == 'shalatmbyday') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                              ><a href="?page=shalatm">Berdasar Mahasiswa</a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'shalatia'|| $_GET['page'] == 'shalatiadetail' || $_GET['page'] == 'shalatiabyperiod' || $_GET['page'] == 'shalatiabyday') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                              ><a href="?page=shalatia">Berdasar Ikhwan/Akhwat</a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'shalatbpembina' || $_GET['page'] == 'shalatbpembinadetail' || $_GET['page'] == 'shalatbpembinabp' || $_GET['page'] == 'shalatbpembinabpday') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                              ><a href="?page=shalatbpembina">Berdasar Pembina</a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'shalatw' || $_GET['page'] == 'shalatwdetail' || $_GET['page'] == 'shalatwperiod' || $_GET['page'] == 'shalatwbday') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                              ><a href="?page=shalatw">Berdasar Waktu Shalat</a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'udzurslt' || $_GET['page'] == 'udzursltdetail') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                              ><a href="?page=udzurslt">Udzur</a>
-                            </li>
-                            <li <?php 
-                                  if (isset($_GET['page'])) {
-                                    if ($_GET['page'] == 'manualslt' || $_GET['page'] == 'manualsltdetail') {
-                                      echo "class='active'";
-                                    }
-                                  }
-                                ?>
-                              ><a href="?page=manualslt">Presensi Manual</a>
                             </li>
                             <li <?php 
                                   if (isset($_GET['page'])) {
