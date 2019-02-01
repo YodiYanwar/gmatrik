@@ -23,8 +23,9 @@
                                   <th>Udzur</th>
                                   <th>Waktu Shalat</th>
                                   <th>Jumlah Waktu Shalat</th>
-                                  <th>Status</th>
-                                  <th>Aksi</th>
+                                  <th>Keterangan</th>
+                                  <th>Diajukan pada</th>
+                                  <th>Setujui?</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -37,15 +38,14 @@
                                  ?>
                                 <tr>
                                   <td><?php echo $no; ?></td>
-                                  <td><?php echo date('l - d M Y', strtotime($row['tanggal'])); ?></td>
+                                  <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
                                   <td><?php echo $row['nama']; ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['wkt']; ?></td>
                                   <td><?php echo $row['jmlu']; ?></td>
-                                  <td><?php if($row['disetujui'] == 0){echo '<label class="badge bg-warning">Belum di Review<label>';}?></td>
-                                  <td>
-                                    <a href="?page=udzursltrev&m=<?php echo $row['nim']; ?>&t=<?php echo $row['tanggal']; ?>" class="btn btn-xs">Review</a>
-                                  </td>
+                                  <td><?php echo $row['keterangan']; ?></td>
+                                  <td><?php echo $row['diajukan']; ?></td>
+                                  <td><?php if($row['disetujui'] == 1){echo 'Disetujui';}else if($row['disetujui'] == 2){echo 'Ditolak';}else if($row['disetujui'] == 0){echo "<a href='#setujuUdzurShalat' data-toggle='modal' class='btn btn-xs bg-green' data-href='action/hapus.php?sudzurshalat=".$row['id_udzur']."'>Ya</a>&nbsp;<a href='#tolakUdzurShalat' data-toggle='modal' class='btn btn-xs bg-red' data-href='action/hapus.php?tudzurshalat=".$row['id_udzur']."'>Tolak</a>";} ?></td>
                                 </tr>
                                 <?php $no++; } } ?>
                               </tbody> 
@@ -74,3 +74,31 @@
     echo "<script>document.location='index.php?page=jplg'</script>";
   }
 ?>
+
+            <div class="modal fade" id="setujuUdzurShalat" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Setujui Pengajuan Udzur ?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="button" class="btn btn-success btn-ok waves-effect">SETUJU</a>
+                            <button class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="modal fade" id="tolakUdzurShalat" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Tolak Pengajuan Udzur ?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="button" class="btn btn-danger btn-ok waves-effect">TOLAK</a>
+                            <button class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>              

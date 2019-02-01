@@ -74,5 +74,17 @@ include '../functions.php';
 
 	    resetPassword($idUser);
 	    header('location:/gmatrik/index.php?page=user'); 
+	} else
+	if(isset($_GET['sudzurshalat'])){
+		$idUdzur = $_GET['sudzurshalat'];
+
+	    setujuUdzurShalat($idUdzur);
+	    header('location:/gmatrik/index.php?page=udzurslt'); 
+	} else
+	if(isset($_GET['tudzurshalat'])){
+		$idUdzur = $_GET['tudzurshalat'];
+
+	    tolakUdzurShalat($idUdzur);
+	    header('location:/gmatrik/index.php?page=udzurslt'); 
 	}
  ?>

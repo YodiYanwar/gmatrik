@@ -4,7 +4,7 @@
 
 // ===================================================================== Mahasiswa Role SHALAT =====================================================================
 	function tampilUdzurShalatRoleMhs($nim){
-		$ambildata = mysql_query("SELECT p.pekan, us.tanggal, us.nim, m.nama, CONCAT(IF(us.shubuh = 1, 'shubuh, ', ''), IF(us.dzuhur = 1, 'dzuhur, ', ''), IF(us.ashar = 1, 'ashar, ', ''), IF(us.maghrib = 1, 'maghrib, ', ''), IF(us.isya = 1, 'isya, ', '')) AS wkt, (us.shubuh+us.dzuhur+ us.ashar+us.maghrib+us.isya) AS jmlu, us.udzur, us.disetujui, us.diajukan FROM udzur_shalat us LEFT JOIN mahasiswa m ON us.nim = m.nim LEFT JOIN pekan p ON us.id_pekan = p.id_pekan WHERE m.nim = '$nim' ORDER BY us.diajukan DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT p.pekan, us.tanggal, us.nim, m.nama, CONCAT(IF(us.shubuh = 1, 'shubuh, ', ''), IF(us.dzuhur = 1, 'dzuhur, ', ''), IF(us.ashar = 1, 'ashar, ', ''), IF(us.maghrib = 1, 'maghrib, ', ''), IF(us.isya = 1, 'isya, ', '')) AS wkt, (us.shubuh+us.dzuhur+ us.ashar+us.maghrib+us.isya) AS jmlu, us.udzur, us.keterangan, us.disetujui, us.diajukan FROM udzur_shalat us LEFT JOIN mahasiswa m ON us.nim = m.nim LEFT JOIN pekan p ON us.id_pekan = p.id_pekan WHERE m.nim = '$nim' ORDER BY us.diajukan DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -40,8 +40,64 @@
 		} 
 	}		
 
+
+	function tampilTahsin($idPembina){
+		$ambildata = mysql_query("SELECT t.id_tahsin, p.pekan, t.tahsin, t.tanggal, t.deskripsi, COUNT(pt.nim) AS jml FROM tahsin t LEFT JOIN presensi_tahsin pt ON t.id_tahsin = pt.id_tahsin LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = $idPembina GROUP BY pt.id_tahsin ORDER BY t.tanggal DESC") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 
+	}		
+
+	function tampilTalim($idPembina){
+		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.talim, t.tanggal, t.deskripsi, COUNT(pt.nim) AS jml FROM talim t LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = $idPembina ORDER BY t.tanggal DESC") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 
+	}		
+
+	function tampilTahsinById($idTahsin){
+		$ambildata = mysql_query("SELECT t.* FROM tahsin t WHERE t.id_tahsin = $idTahsin") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 
+	}			
+
+	function tampilTalimById($idTalim){
+		$ambildata = mysql_query("SELECT t.* FROM talim t WHERE t.id_talim = $idTalim") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 
+	}	
+
+	function tampilPresensiTahsin($idTahsin){
+		$ambildata = mysql_query("SELECT pt.id_tahsin, pt.nim, m.nama FROM presensi_tahsin pt LEFT JOIN mahasiswa m ON pt.nim = m.nim WHERE pt.id_tahsin = $idTahsin") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 
+	}		
+
+	function tampilPresensiTalim($idTalim){
+		$ambildata = mysql_query("SELECT pt.id_talim, pt.nim, m.nama FROM presensi_talim pt LEFT JOIN mahasiswa m ON pt.nim = m.nim WHERE pt.id_talim = $idTalim") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} 
+	}		
+
+
 	function tampilUdzurShalatRolePembina($idPembina){
-		$ambildata = mysql_query("SELECT us.tanggal, us.nim, m.nama, COUNT(us.waktu_shalat) AS jmlu, GROUP_CONCAT(us.waktu_shalat SEPARATOR ', ') AS wkt, us.udzur, us.disetujui, us.diajukan FROM udzur_shalat us LEFT JOIN mahasiswa m ON us.nim = m.nim WHERE m.id_pembina = $idPembina GROUP BY us.tanggal ORDER BY us.diajukan DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT us.id_udzur, p.pekan, us.tanggal, us.nim, m.nama, CONCAT(IF(us.shubuh = 1, 'shubuh, ', ''), IF(us.dzuhur = 1, 'dzuhur, ', ''), IF(us.ashar = 1, 'ashar, ', ''), IF(us.maghrib = 1, 'maghrib, ', ''), IF(us.isya = 1, 'isya, ', '')) AS wkt, (us.shubuh+us.dzuhur+ us.ashar+us.maghrib+us.isya) AS jmlu, us.udzur, us.keterangan, us.disetujui, us.diajukan FROM udzur_shalat us LEFT JOIN mahasiswa m ON us.nim = m.nim LEFT JOIN pekan p ON us.id_pekan = p.id_pekan WHERE m.id_pembina = '$idPembina' ORDER BY us.diajukan DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -294,7 +350,7 @@
 	}			
 
 	function tampilDaftarBinaanTahsin($idPembina){
-		$ambildata = mysql_query("SELECT mb.id_mahasiswa, m.nim, m.nama FROM m_binaan mb LEFT JOIN mahasiswa m ON mb.id_mahasiswa = m.id_mahasiswa WHERE mb.id_pembina = $idPembina ORDER BY m.nama") or die(mysql_error());
+		$ambildata = mysql_query("SELECT m.nim, m.nama FROM mahasiswa m WHERE m.id_pembina = $idPembina ORDER BY m.nama") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -307,15 +363,25 @@
 		}
 	}		
 
-	function inputTahsin($idPembina, $tgl, $tahsin, $ket){
+	function inputTahsin($idPembina, $tahsin, $tgl, $deskripsi){
 		$tgl_ = date('Y-m-d', strtotime($tgl));
-		mysql_query("INSERT INTO tahsin(`id_pembina`, `tanggal`, `tahsin`, `waktu_input`, `keterangan`) VALUES ($idPembina, '$tgl_', '$tahsin', now(), '$ket');");
+		mysql_query("INSERT INTO tahsin(id_pekan, id_pembina, tahsin, tanggal, deskripsi) VALUES (((SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai)), $idPembina, '$tahsin', '$tgl_', '$deskripsi');");
 	}		
 
-	function inputTahsinPresensi($idMahasiswa, $idPembina, $tgl, $tahsin){
+	function inputTalim($idPembina, $talim, $tgl, $deskripsi){
 		$tgl_ = date('Y-m-d', strtotime($tgl));
-		mysql_query("INSERT INTO tahsin_presensi (id_tahsin, id_mahasiswa) VALUES ((SELECT t.id FROM tahsin t WHERE t.id_pembina = $idPembina AND t.tanggal = '$tgl_' AND t.tahsin = '$tahsin'), $idMahasiswa)");
+		mysql_query("INSERT INTO talim(id_pekan, id_pembina, talim, tanggal, deskripsi) VALUES (((SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai)), $idPembina, '$talim', '$tgl_', '$deskripsi');");
+	}		
+
+	function inputTahsinPresensi($nim, $idPembina, $tgl, $tahsin){
+		$tgl_ = date('Y-m-d', strtotime($tgl));
+		mysql_query("INSERT INTO presensi_tahsin (id_tahsin, nim) VALUES ((SELECT t.id_tahsin FROM tahsin t WHERE t.id_pembina = $idPembina AND t.tanggal = '$tgl_' AND t.tahsin = '$tahsin'), $nim)");
 	}	
+
+	function inputTalimPresensi($nim, $idPembina, $tgl, $talim){
+		$tgl_ = date('Y-m-d', strtotime($tgl));
+		mysql_query("INSERT INTO presensi_talim (id_talim, nim) VALUES ((SELECT t.id_talim FROM talim t WHERE t.id_pembina = $idPembina AND t.tanggal = '$tgl_' AND t.talim = '$talim'), $nim)");
+	}		
 
 	function tahsinByMhsRolePembina($idPembina){
 		$ambildata = mysql_query("SELECT mb.id_mahasiswa, m.nama, ms.jmlt AS total, IF(u.jmlu IS NULL, 0, u.jmlu) AS jmlu, t.target AS target1, t.target-IF(u.jmlu IS NULL, 0, u.jmlu) AS target2, ROUND(((ms.jmlt/(t.target-IF(u.jmlu IS NULL, 0, u.jmlu)))*100),2) AS nilai FROM m_binaan mb LEFT JOIN mahasiswa m ON mb.id_mahasiswa = m.id_mahasiswa LEFT JOIN ( SELECT tp.id_mahasiswa, COUNT(tp.id_tahsin) AS jmlt FROM tahsin_presensi tp GROUP BY tp.id_mahasiswa ) ms ON mb.id_mahasiswa = ms.id_mahasiswa LEFT JOIN ( SELECT tu.id_mahasiswa, COUNT(tu.udzur) AS jmlu FROM tahsin_udzur tu WHERE tu.disetujui = 1 GROUP BY tu.id_mahasiswa ) u ON mb.id_mahasiswa = u.id_mahasiswa JOIN ( SELECT COUNT(t.tahsin) AS target FROM tahsin t WHERE t.id_pembina = $idPembina GROUP BY t.id_pembina ) t WHERE mb.id_pembina = $idPembina ORDER BY nilai DESC") or die(mysql_error());

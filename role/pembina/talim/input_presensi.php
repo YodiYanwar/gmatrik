@@ -10,19 +10,19 @@
                     <div class="card">
                         <div class="header">
                           <h2><a href="?page=tahsin" class="btn btn-sm btn-link waves-effect" title="Kembali"><i class="material-icons">arrow_back</i></a>&nbsp;&nbsp;&nbsp;
-                          TAMBAH DATA TAHSIN/TAHFIDZ & INPUT PRESENSI TAHSIN/TAHFIDZ</h2>
+                          TAMBAH DATA TA'LIM & INPUT PRESENSI TA'LIM</h2>
                         </div>
-                        <form method="POST" id="formInputPresensiTahsin">
+                        <form method="POST" id="formInputPresensiTalim">
                         <div class="body">   
                           <div class="row">
                             <div class="col col-sm-4">
                               <div class="input-group">
-                                      <label>Tahsin :</label>
+                                      <label>Ta'lim :</label>
                                       <div class="form-line">
-                                        <select class="form-control show-tick" name="namatahsin" required>
-                                          <option value="">- Pilih Tahsin -</option>
-                                          <option value="badashubuh">Tahsin Ba'da Shubuh</option>
+                                        <select class="form-control show-tick" name="namatalim" required>
+                                          <option value="">- Pilih Ta'lim -</option>
                                           <option value="badaashar">Tahsin Ba'da Ashar</option>
+                                          <option value="badaisya">Ta'lim Ba'da Isya</option>
                                         </select>
                                       </div>
                                     </div>
@@ -31,7 +31,7 @@
                               <div class="input-group">
                                       <label>Tanggal :</label>
                                       <div class="form-line">
-                                        <input type="text" class="form-control datepicker" name="tgltahsin" placeholder="Tanggal Tahsin" required /><br>
+                                        <input type="text" class="form-control datepicker" name="tgltalim" placeholder="Tanggal Ta'lim" required /><br>
                                       </div>
                                     </div>
                             </div>
@@ -39,14 +39,14 @@
                               <div class="input-group">
                                       <label>Deskripsi :</label>
                                       <div class="form-line">
-                                        <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi Tahsin" /><br>
+                                        <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi Materi Ta'lim" /><br>
                                       </div>
                                     </div>
                             </div>
                           </div>     
 
                                                 
-                                    <label>Input Presensi Tahsin/Tahfidz :</label>
+                                    <label>Input Presensi Ta'lim :</label>
                                     <div class="table-responsive">
                                     <!-- Table Daftar Pembina -->
                                       <table class="table table-hover table-condensed">
@@ -79,7 +79,7 @@
                                       </table>
                                       <!-- /Table Daftar Pembina -->
                                     </div>
-                                  <button type="submit" class="btn btn-primary waves-effect" name="submitPresensiTahsin">SUBMIT</button>
+                                  <button type="submit" class="btn btn-primary waves-effect" name="submitPresensiTalim">SUBMIT</button>
                           </div>
                         </form>
 </div>
@@ -88,15 +88,15 @@
 
     <?php 
      
-        if (isset($_POST['submitPresensiTahsin'])) {
-          inputTahsin($idPembina, $_POST['namatahsin'], $_POST['tgltahsin'], $_POST['deskripsi']);
+        if (isset($_POST['submitPresensiTalim'])) {
+          inputTalim($idPembina, $_POST['namatalim'], $_POST['tgltalim'], $_POST['deskripsi']);
 
           if(!empty($_POST['nim'])) {
             foreach($_POST['nim'] as $nim) {
-              inputTahsinPresensi($nim, $idPembina, $_POST['tgltahsin'], $_POST['namatahsin']);
+              inputTalimPresensi($nim, $idPembina, $_POST['tgltalim'], $_POST['namatalim']);
             }
           }
-        echo "<script>document.location='index.php'</script>";
+        echo "<script>document.location='index.php?page=talim'</script>";
         }
     ?>
 
@@ -110,7 +110,7 @@
 
     $('input').on('ifChecked', function(event){
       var nim = $(this).val();
-      $('#formInputPresensiTahsin').append(
+      $('#formInputPresensiTalim').append(
         $('<input>')
           .attr('type', 'hidden')
           .attr('id', 'input'+nim)

@@ -105,6 +105,7 @@ $(document).on('click', '.btn-add', addFormGroup);
                                   <th>Waktu Shalat</th>
                                   <th>Jumlah Waktu Shalat</th>
                                   <th>Udzur</th>
+                                  <th>Keterangan</th>
                                   <th>Diajukan pada</th>
                                   <th>Disetujui?</th>
                                 </tr>
@@ -124,6 +125,7 @@ $(document).on('click', '.btn-add', addFormGroup);
                                   <td><?php echo ucwords($row['wkt']); ?></td>
                                   <td><?php echo ucwords($row['jmlu']); ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
+                                  <td><?php echo $row['keterangan']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>
                                   <td><?php if($row['disetujui'] == 0){echo '<label class="badge bg-orange">Belum di Review<label>';}else if($row['disetujui'] == 1){echo '<label class="badge bg-green">Ya<label>';}else if($row['disetujui'] == 2){echo '<label class="badge bg-red">Tidak<label>';}?></td>
                                 </tr>
