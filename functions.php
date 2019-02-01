@@ -124,6 +124,60 @@
 		}		
 	}
 
+	function tambahSemester($angkatan, $semester, $tanggaldari, $tanggalsampai){
+		generatePekan($semester, $tanggaldari, $tanggalsampai);
+		mysql_query("INSERT INTO semester(angkatan, semester, tanggal_dari, tanggal_sampai) VALUES ('$angkatan','$semester','$tanggaldari','$tanggalsampai')");
+	}
+
+	function generatePekan($semester, $tanggaldari, $tanggalsampai){
+		//generate pekan [jumat-kamis]
+		date_default_timezone_set('Asia/Jakarta');
+		$timeStart = strtotime($tanggaldari);
+    $timeEnd   = strtotime($tanggalsampai);
+    $out       = [];
+    $milestones[] = $timeStart;
+    $timeEndWeek = strtotime('next Friday', $timeStart);
+    while ($timeEndWeek < $timeEnd) {
+        $milestones[] = $timeEndWeek;
+        $timeEndWeek = strtotime('+1 week', $timeEndWeek);
+    }
+    $milestones[] = $timeEnd;
+    $count = count($milestones);
+    for ($i = 1; $i < $count; $i++) {
+			if( $i == $count - 1) {
+				$dateAwal = date('Y-m-d', $milestones[$i - 1]);
+				$dateAhir = date('Y-m-d', $milestones[$i]);
+				$interval = date_diff(date_create($dateAwal), date_create($dateAhir));
+				if($interval->format('%d')==6){
+					$out[] = [
+						'start' => $milestones[$i - 1],
+						'end'   => $milestones[$i]
+					];
+				}
+			}else{
+				$dateAwal = date('Y-m-d', $milestones[$i - 1]);
+				$dateAhir = date('Y-m-d', $milestones[$i] - 1);
+				$interval = date_diff(date_create($dateAwal), date_create($dateAhir));
+				if($interval->format('%d')==6){
+					$out[] = [
+						'start' => $milestones[$i - 1],
+						'end'   => $milestones[$i] - 1
+					];
+				}
+			}
+		}
+		//hasil $out
+		$query = 'INSERT INTO pekan(id_semester, pekan, tanggal_dari, tanggal_sampai) VALUES ';
+		$query_parts = array();
+		$pekan_n = 1;
+    for($x=0; $x<count($out); $x++){
+				$query_parts[] = "('" . $semester . "', " . $pekan_n . ", '" . date('Y-m-d', $out[$x]["start"]) . "', '" . date('Y-m-d', $out[$x]["end"]) . "')";
+				$pekan_n++;
+    }
+		$query .= implode(',', $query_parts);
+		mysql_query($query);
+	}	
+
 	function tampilPekan(){
 		$ambildata = mysql_query("SELECT p.pekan, p.tanggal_dari, p.tanggal_sampai, s.semester FROM pekan p LEFT JOIN semester s ON p.id_semester = s.id_semester ORDER BY p.id_pekan") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
@@ -473,9 +527,9 @@
 		}
 	}
 
-	function tambahSemester($angkatan, $semester, $tanggaldari, $tanggalsampai){
+/*	function tambahSemester($angkatan, $semester, $tanggaldari, $tanggalsampai){
 		mysql_query("INSERT INTO semester(angkatan, semester, tanggal_dari, tanggal_sampai) VALUES ('$angkatan','$semester','$tanggaldari','$tanggalsampai')");
-	}
+	}*/
 
 	function tambahMahasiswa($nim, $idPembina, $nama, $gender, $angkatan, $kotaasal, $telepon){
 

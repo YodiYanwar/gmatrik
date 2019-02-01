@@ -4,7 +4,7 @@
 
 // ===================================================================== Mahasiswa Role SHALAT =====================================================================
 	function tampilUdzurShalatRoleMhs($nim){
-		$ambildata = mysql_query("SELECT p.pekan, us.tanggal, us.nim, m.nama, us.waktu_shalat, us.udzur, us.diajukan, us.disetujui FROM udzur_shalat us LEFT JOIN mahasiswa m ON m.nim = us.nim LEFT JOIN pekan p ON us.id_pekan = p.id_pekan WHERE us.nim = $nim ORDER BY us.diajukan DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT p.pekan, us.tanggal, us.nim, m.nama, CONCAT(IF(us.shubuh = 1, 'shubuh, ', ''), IF(us.dzuhur = 1, 'dzuhur, ', ''), IF(us.ashar = 1, 'ashar, ', ''), IF(us.maghrib = 1, 'maghrib, ', ''), IF(us.isya = 1, 'isya, ', '')) AS wkt, (us.shubuh+us.dzuhur+ us.ashar+us.maghrib+us.isya) AS jmlu, us.udzur, us.disetujui, us.diajukan FROM udzur_shalat us LEFT JOIN mahasiswa m ON us.nim = m.nim LEFT JOIN pekan p ON us.id_pekan = p.id_pekan WHERE m.nim = '$nim' ORDER BY us.diajukan DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -186,9 +186,9 @@
 		}		
 	}	
 
-	function tambahUdzurShalat($nim, $tgl, $wkt, $udzur){
+	function tambahUdzurShalat($nim, $tgl, $shubuh, $dzuhur, $ashar, $maghrib, $isya, $udzur, $ket){
 		$tgl_ = date('Y-m-d', strtotime($tgl));
-		mysql_query("INSERT INTO udzur_shalat (nim, id_pekan, tanggal, waktu_shalat, udzur, diajukan, disetujui) VALUES ( '$nim', (SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai), '$tgl', '$wkt', '$udzur', now(), 0 )") or die(mysql_error());
+		mysql_query("INSERT INTO udzur_shalat (id_pekan, nim, tanggal, shubuh, dzuhur, ashar, maghrib, isya, udzur, keterangan, diajukan, disetujui) VALUES ( (SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai), '$nim', '$tgl_', '$shubuh', '$dzuhur', '$ashar', '$maghrib', '$isya', '".mysql_real_escape_string(htmlentities($udzur))."', '$ket', now(), 0)") or die(mysql_error());
 	}	
 
 	function tambahUdzurTahsin($idTahsin, $idMahasiswa, $udzur, $ket){

@@ -88,7 +88,7 @@
                                             <i class="material-icons">assignment_ind</i>
                                         </span>
                                         <div class="form-line">
-                                            <input type="text" name="tanggalsampai" class="datepicker form-control" placeholder="Dari Tanggal" required>
+                                            <input type="text" name="tanggaldari" class="datepicker form-control" placeholder="Dari Tanggal" required>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                             <i class="material-icons">account_box</i>
                                         </span>
                                         <div class="form-line">
-                                            <input type="text" name="tanggaldari" class="datepicker form-control" placeholder="Sampai Tanggal" required>
+                                            <input type="text" name="tanggalsampai" class="datepicker form-control" placeholder="Sampai Tanggal" required>
                                         </div>
                                     </div>
                                 </div>

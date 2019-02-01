@@ -12,14 +12,25 @@
                         <form method="POST">
                         <div class="body">                                
                                   
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                       <label>Pekan ke :</label>
                                       <div class="form-line">
                                         <input type="text" name="daterangeShalat" class="form-control date" id="reportrange" required>
                                       </div>
-                                    </div>
-                                  
-                                                     
+                                    </div> -->
+                                    
+                                          <div class="form-group">
+                                            <label>Pekan ke :</label>
+                                              <select class="form-control show-tick" data-live-search="true" name="idPekan" required>
+                                                        <option value="" selected>-- Pilih Pekan --</option>
+                                                        <?php $pekan = tampilPekan();
+                                                          foreach($pekan as $row){
+                                                            echo '<option value="'.$row['id_pekan'].'">'.$row['pekan'].'. '.date('d M Y', strtotime($row['tanggal_dari'])).' - '.date('d M Y', strtotime($row['tanggal_sampai'])).'</option>';
+                                                          } 
+                                                        ?>
+                                        </select>  
+                                          </div>
+                                        
                                     <div class="bootstrap-timepicker">
                                       <div class="row">
                                         <div class="col-md-3 nopadding">

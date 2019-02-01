@@ -90,7 +90,7 @@ $(document).on('click', '.btn-add', addFormGroup);
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                          <h2>DAFTAR UDZUR SHALAT &nbsp;&nbsp;&nbsp;
+                          <h2>DATA UDZUR SHALAT &nbsp;&nbsp;&nbsp;
                             <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahUdzur" title="Input Pengajuan Udzur Shalat"><i class="material-icons">playlist_add</i><span>TAMBAH PENGAJUAN UDZUR</span></button>
                           </h2>
                         </div>
@@ -103,6 +103,7 @@ $(document).on('click', '.btn-add', addFormGroup);
                                   <th>Pekan ke</th>
                                   <th>Hari - Tanggal</th>
                                   <th>Waktu Shalat</th>
+                                  <th>Jumlah Waktu Shalat</th>
                                   <th>Udzur</th>
                                   <th>Diajukan pada</th>
                                   <th>Disetujui?</th>
@@ -118,9 +119,10 @@ $(document).on('click', '.btn-add', addFormGroup);
                                  ?>
                                 <tr>
                                   <td><?php echo $no; ?></td>
-                                  <td><?php echo $row['pekan']; ?></td>
+                                  <td><?php echo ucwords($row['pekan']); ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php echo ucwords($row['waktu_shalat']); ?></td>
+                                  <td><?php echo ucwords($row['wkt']); ?></td>
+                                  <td><?php echo ucwords($row['jmlu']); ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>
                                   <td><?php if($row['disetujui'] == 0){echo '<label class="badge bg-orange">Belum di Review<label>';}else if($row['disetujui'] == 1){echo '<label class="badge bg-green">Ya<label>';}else if($row['disetujui'] == 2){echo '<label class="badge bg-red">Tidak<label>';}?></td>
@@ -187,17 +189,18 @@ $(document).on('click', '.btn-add', addFormGroup);
                                          <!-- <input type="checkbox" class="flat-red" id="check-all1">&nbsp;Semua&nbsp;&nbsp; -->
                                      <label>Waktu Shalat :</label><br>
                                           <input type="checkbox" class="flat-red" id="check-all1">&nbsp;Semua&nbsp;&nbsp;
-                                          <input type="checkbox" class="flat-red check" name="shubuh[]" value="shubuh">&nbsp;Shubuh&nbsp;&nbsp;
-                                          <input type="checkbox" class="flat-red check" name="dzuhur[]" value="dzuhur">&nbsp;Dzuhur&nbsp;&nbsp;
-                                          <input type="checkbox" class="flat-red check" name="ashar[]" value="ashar">&nbsp;Ashar&nbsp;&nbsp;
-                                          <input type="checkbox" class="flat-red check" name="maghrib[]" value="maghrib">&nbsp;Maghrib&nbsp;&nbsp;
-                                          <input type="checkbox" class="flat-red check" name="isya[]" value="isya">&nbsp;Isya
+                                          <input type="checkbox" class="flat-red check" name="shubuh" value="shubuh">&nbsp;Shubuh&nbsp;&nbsp;
+                                          <input type="checkbox" class="flat-red check" name="dzuhur" value="dzuhur">&nbsp;Dzuhur&nbsp;&nbsp;
+                                          <input type="checkbox" class="flat-red check" name="ashar" value="ashar">&nbsp;Ashar&nbsp;&nbsp;
+                                          <input type="checkbox" class="flat-red check" name="maghrib" value="maghrib">&nbsp;Maghrib&nbsp;&nbsp;
+                                          <input type="checkbox" class="flat-red check" name="isya" value="isya">&nbsp;Isya
                                        <!-- <label>Tahsin/Tahfidz :</label>
                                         <select class="form-control show-tick" data-live-search="true" onchange="location = this.value;">
                                           <option selected>-- Pilih Tahsin/Tahfidz & Tanggal --</option>
 
-                                        </select> -->
-                                        
+                                        </select> --><br><br>
+                                        <label>Keterangan :</label>
+                                          <input type="text" class="form-control" name="keterangan" placeholder="Keterangan Udzur"/><br>
                                           
                                       <!-- <label>Keterangan :</label><br>
                                       <input type="text" class="form-control" name="keterangan" placeholder="Keterangan Udzur"/> -->
@@ -231,8 +234,49 @@ $(document).on('click', '.btn-add', addFormGroup);
     <?php 
         if (isset($_POST['submitUdzur'])) {
 
-         
+        
             if(!empty($_POST['shubuh'])) {
+              $shubuh_ = 1;
+            }else
+            if(empty($_POST['shubuh'])) {
+              $shubuh_ = 0;
+            }
+
+            if(!empty($_POST['dzuhur'])) {
+              $dzuhur_ = 1;
+            }else
+            if(empty($_POST['dzuhur'])) {
+              $dzuhur_ = 0;
+            }
+
+            if(!empty($_POST['ashar'])) {
+              $ashar_ = 1;
+            }else
+            if(empty($_POST['ashar'])) {
+              $ashar_ = 0;
+            }
+
+            if(!empty($_POST['maghrib'])) {
+              $maghrib_ = 1;
+            }else
+            if(empty($_POST['maghrib'])) {
+              $maghrib_ = 0;
+            }
+
+            if(!empty($_POST['isya'])) {
+              $isya_ = 1;
+            }else
+            if(empty($_POST['isya'])) {
+              $isya_ = 0;
+            }
+
+            tambahUdzurShalat($nim, $_POST['tanggal'], $shubuh_, $dzuhur_, $ashar_, $maghrib_, $isya_, $_POST['udzur'], $_POST['keterangan']);
+
+            // tambahJplg($_POST['tplg1'], $_POST['gender'], $shubuh_, $dzuhur_, $ashar_, $maghrib_, $isya_);
+                    
+
+         
+            /*if(!empty($_POST['shubuh'])) {
               foreach($_POST['shubuh'] as $shubuh) {
                 tambahUdzurShalat($nim, $_POST['tanggal'], $shubuh, $_POST['udzur']);
               }
@@ -256,7 +300,7 @@ $(document).on('click', '.btn-add', addFormGroup);
               foreach($_POST['isya'] as $isya) {
                 tambahUdzurShalat($nim, $_POST['tanggal'], $isya, $_POST['udzur']);
               }
-            }
+            }*/
           
 
         echo "<script>document.location='index.php?page=udzurslt'</script>";
