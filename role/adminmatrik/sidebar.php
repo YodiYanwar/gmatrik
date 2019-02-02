@@ -249,7 +249,7 @@
                                 ?>
                             >
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">account_circle</i>
+                            <i class="material-icons">supervised_user_circle</i>
                             <span>Mahasiswa</span>
                         </a>
                         <ul class="ml-menu">
@@ -273,7 +273,7 @@
                                 ?>
                             >
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">perm_identity</i>
+                            <i class="material-icons">account_circle</i>
                             <span>Pimpinan</span>
                         </a>
                         <ul class="ml-menu">

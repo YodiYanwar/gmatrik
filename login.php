@@ -59,12 +59,13 @@ if(isset($_POST['login'])){
         $sql_profil = mysql_query("SELECT * FROM pimpinan WHERE id_user=$id") or die(mysql_error());
 
           while($pimpinan = mysql_fetch_assoc($sql_profil)){
-          $ava = $pimpinan['avatar'];
-            $id_Pimpinan = $pimpinan['id_pimpinan'];
+            // $ava = $pimpinan['avatar'];
+            $id_pimpinan = $pimpinan['id_pimpinan'];
             $nama = $pimpinan['nama'];
-            $email = $pimpinan['email'];
-            $telp = $pimpinan['telp'];
-            $gender = $pimpinan['j_kelamin'];
+            // $email = $pimpinan['email'];
+            // $telp = $pimpinan['telp'];
+            $gender = $pimpinan['gender'];
+            $jabatan = $pimpinan['jabatan'];
             
             echo '<script language="javascript">document.location="index.php";</script>';
           }
@@ -83,10 +84,10 @@ if(isset($_POST['login'])){
           $_SESSION['ava'] = $ava;
         } 
 
-        $_SESSION['id_Pimpinan'] = $id_Pimpinan;
+        $_SESSION['id_pimpinan'] = $id_Pimpinan;
         $_SESSION['nama'] = $nama;
         $_SESSION['role'] = 'pimpinan';
-        $_SESSION['rolename'] = 'pimpinan';
+        $_SESSION['rolename'] = $jabatan;
         $_SESSION['username'] = $user;   
            
         }else if($row['level'] == 1){

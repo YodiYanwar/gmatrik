@@ -541,11 +541,11 @@
 		return $data;
 	}	
 
-	function totalPelanggaran(){
+/*	function totalPelanggaran(){
 		$ambildata = mysql_query("SELECT COUNT(id_pelanggaran) as Total from pmain");
 		$data = mysql_fetch_assoc($ambildata);
 		return $data;
-	}	
+	}	*/
 
 	function totalUser(){
 		$ambildata = mysql_query("SELECT COUNT(id_user) as Total from users");
