@@ -10,7 +10,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                          <h2><a href="?page=pekanshalat" class="btn btn-sm btn-link waves-effect" title="Kembali"><i class="material-icons">arrow_back</i></a>&nbsp;&nbsp;&nbsp;NILAI PRESENSI SHALAT
+                          <h2><a href="?page=pekantalim" class="btn btn-sm btn-link waves-effect" title="Kembali"><i class="material-icons">arrow_back</i></a>&nbsp;&nbsp;&nbsp;NILAI PRESENSI TA'LIM
                             <small>Pekan ke :
                                 <div class="btn-group">
                                                       <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,10 +24,10 @@
                                                       </button>
                                                       <ul class="dropdown-menu">
                                                           <?php
-                                                            $dataPekanShalat = tampilPekanShalat();
+                                                            $dataPekanShalat = tampilPekanTalim();
                                                             foreach($dataPekanShalat as $row){
                                                             ?>
-                                                              <li><?php echo '<a href="?page=nilaishalat&idpekan='.$row['id_pekan'].'">'.$row['pekan'].') '.date('d M Y', strtotime($row['tanggal_dari'])).' - '.date('d M Y', strtotime($row['tanggal_sampai'])).'</a>'; ?></li>
+                                                              <li><?php echo '<a href="?page=nilaitalim&idpekan='.$row['id_pekan'].'">'.$row['pekan'].') '.date('d M Y', strtotime($row['tanggal_dari'])).' - '.date('d M Y', strtotime($row['tanggal_sampai'])).'</a>'; ?></li>
                                                           <?php } ?>
                                                       </ul>
                                       </div>
@@ -46,7 +46,6 @@
                                   <th>Pembina Mahasiswa</th>
                                   <th>Perolehan Presensi</th>
                                   <th>Jumlah Udzur</th>
-                                  <th>Dispensasi Jadwal Pulang</th>
                                   <th>Target</th>
                                   <th>Nilai</th>
                                 </tr>
@@ -54,7 +53,7 @@
                               <tbody>
                                 <?php 
                                   $no = 1;
-                                  $nilai = tampilNilaiShalatByPekan($idPekan);
+                                  $nilai = tampilNilaiTalimByPekan($idPekan);
                                   foreach($nilai as $row){
                                  ?>
                                 <tr>
@@ -65,7 +64,6 @@
                                   <td><?php echo $row['namapembina'].' '.$row['gelar']; ?></td>
                                   <td><?php echo $row['total']; ?></td>
                                   <td><?php echo $row['jmlu']; ?></td>
-                                  <td><?php echo $row['jplg']; ?></td>
                                   <td><?php echo $row['target2']; ?></td>
                                   <td><?php echo $row['nilai']; ?></td>
                                 </tr>
