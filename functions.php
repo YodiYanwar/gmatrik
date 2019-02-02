@@ -235,6 +235,35 @@
 		}		
 	}	
 
+	function tampilPekanById($idPekan){
+		$ambildata = mysql_query("SELECT p.pekan, p.tanggal_dari, p.tanggal_sampai, s.semester FROM pekan p LEFT JOIN semester s ON p.id_semester = s.id_semester WHERE p.id_pekan = $idPekan ORDER BY p.id_pekan") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		}
+	}	
+
+	function tampilPekanShalat(){
+		$ambildata = mysql_query("SELECT p.id_semester, s.semester, p.id_pekan, p.pekan, p.tanggal_dari, p.tanggal_sampai FROM pekan p LEFT JOIN semester s ON p.id_semester = s.id_semester INNER JOIN ( SELECT ps.id_pekan FROM presensi_shalat ps GROUP BY ps.id_pekan ) s ON p.id_pekan = s.id_pekan ORDER BY p.id_pekan DESC") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		}
+	}		
+
+	function tampilNilaiShalatByPekan($idPekan){
+		$ambildata = mysql_query("SELECT m.nim, m.nama, m.gender, m.id_pembina, p.nama AS namapembina, IF(s.total IS NULL, 0, s.total) AS total, 35 AS target1, IF(u.jmlu IS NULL, 0, u.jmlu) AS jmlu, IF(g.jplg IS NULL, 0, g.jplg) AS jplg, 35-IF(u.jmlu IS NULL, 0, u.jmlu)-(IF(g.jplg IS NULL, 0, g.jplg)) AS target2, ROUND(((IF(s.total IS NULL, 0, s.total)/(35-IF(u.jmlu IS NULL, 0, u.jmlu)-(IF(g.jplg IS NULL, 0, g.jplg))))*100),2) AS nilai FROM mahasiswa m INNER JOIN pembina_mahasiswa p ON m.id_pembina = p.id_pembina LEFT JOIN ( SELECT ps.nim, SUM(ps.shubuh+ps.dzuhur+ps.ashar+ps.maghrib+ps.isya) AS total FROM presensi_shalat ps WHERE ps.id_pekan = $idPekan GROUP BY ps.nim ) s ON m.nim = s.nim LEFT JOIN ( SELECT us.nim, SUM(us.shubuh+us.dzuhur+us.ashar+us.maghrib+us.isya) AS jmlu FROM udzur_shalat us WHERE us.disetujui = 1 GROUP BY us.nim ) u ON m.nim = u.nim LEFT JOIN ( SELECT jp.gender, SUM(jp.shubuh+jp.dzuhur+jp.ashar+jp.maghrib+jp.isya) AS jplg FROM jadwal_pulang jp WHERE jp.id_pekan = $idPekan GROUP BY jp.gender ) g ON m.gender = g.gender ORDER BY m.nama") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} else{
+			echo "Data pekan kosong";
+		}		
+	}			
+
 	function tampilMahasiswaById($idMahasiswa){
 		$ambildata = mysql_query("SELECT m.*, u.*, p.id_pembina AS idp, p.nama AS namap FROM users u INNER JOIN mahasiswa m ON m.id_user = u.id_user LEFT JOIN m_binaan mb ON m.id_mahasiswa = mb.id_mahasiswa LEFT JOIN pembina p ON mb.id_pembina = p.id_pembina WHERE m.id_mahasiswa = $idMahasiswa ORDER BY m.nama") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {

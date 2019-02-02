@@ -6,7 +6,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                          <h2>DATA PEKAN &nbsp;&nbsp;&nbsp;
+                          <h2>DATA PEKAN PRESENSI SHALAT&nbsp;&nbsp;&nbsp;
                           </h2>
                         </div>
                         <div class="body ">
@@ -19,20 +19,22 @@
                                             <th>Pekan ke</th>
                                             <th>Dari Tanggal</th>
                                             <th>Sampai Tanggal</th>
+                                            <th>Aksi</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                           <?php 
-                                            $dataPekan = tampilPekan();
+                                            $dataPekan = tampilPekanShalat();
                                             $no = 1;
                                             foreach($dataPekan as $row){
                                            ?>
                                         <tr>
                                           <td><b><?php echo $no ?></b></td>  
                                           <td><?php echo $row['semester'];?></td>
-                                          <td><?php echo $row['pekan'] ?></td>
+                                          <td><?php echo $row['pekan']; ?></td>
                                           <td><?php echo date('l - d M Y', strtotime($row['tanggal_dari'])); ?></td>
                                           <td><?php echo date('l - d M Y', strtotime($row['tanggal_sampai'])); ?></td>
+                                          <td><a href='?page=nilaishalat&idpekan=<?php echo $row['id_pekan']; ?>' class='btn btn-xs'>Lihat Nilai</a></td>
                                         </tr>
                                           <?php 
                                              $no++; }
