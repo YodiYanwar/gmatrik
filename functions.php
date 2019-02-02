@@ -289,6 +289,15 @@
 		}
 	}			
 
+	function tampilNilaiShalatByPekanByPembina($idPekan, $idPembina){
+		$ambildata = mysql_query("SELECT m.nim, m.nama, m.gender, m.id_pembina, p.nama AS namapembina, IF(s.total IS NULL, 0, s.total) AS total, 35 AS target1, IF(u.jmlu IS NULL, 0, u.jmlu) AS jmlu, IF(g.jplg IS NULL, 0, g.jplg) AS jplg, 35-IF(u.jmlu IS NULL, 0, u.jmlu)-(IF(g.jplg IS NULL, 0, g.jplg)) AS target2, ROUND(((IF(s.total IS NULL, 0, s.total)/(35-IF(u.jmlu IS NULL, 0, u.jmlu)-(IF(g.jplg IS NULL, 0, g.jplg))))*100),2) AS nilai FROM mahasiswa m INNER JOIN pembina_mahasiswa p ON m.id_pembina = p.id_pembina LEFT JOIN ( SELECT ps.nim, SUM(ps.shubuh+ps.dzuhur+ps.ashar+ps.maghrib+ps.isya) AS total FROM presensi_shalat ps WHERE ps.id_pekan = $idPekan GROUP BY ps.nim ) s ON m.nim = s.nim LEFT JOIN ( SELECT us.nim, SUM(us.shubuh+us.dzuhur+us.ashar+us.maghrib+us.isya) AS jmlu FROM udzur_shalat us WHERE us.disetujui = 1 AND us.id_pekan = $idPekan GROUP BY us.nim ) u ON m.nim = u.nim LEFT JOIN ( SELECT jp.gender, SUM(jp.shubuh+jp.dzuhur+jp.ashar+jp.maghrib+jp.isya) AS jplg FROM jadwal_pulang jp WHERE jp.id_pekan = $idPekan GROUP BY jp.gender ) g ON m.gender = g.gender WHERE p.id_pembina = $idPembina ORDER BY m.nama") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		}
+	}			
+
 	function tampilNilaiTalimByPekan($idPekan){
 		$ambildata = mysql_query("SELECT m.nim, m.nama, m.gender, m.id_pembina, p.nama AS namapembina, p.gelar, IF(ta.total IS NULL, 0, ta.total) AS total, IF(tl.target IS NULL, 0, tl.target) AS target1, IF(u.jmlu IS NULL, 0, u.jmlu) AS jmlu, IF(tl.target IS NULL, 0, tl.target)-IF(u.jmlu IS NULL, 0, u.jmlu) AS target2, ROUND(((IF(ta.total IS NULL, 0, ta.total)/(IF(tl.target IS NULL, 0, tl.target)-IF(u.jmlu IS NULL, 0, u.jmlu)))*100),2) AS nilai FROM mahasiswa m INNER JOIN pembina_mahasiswa p ON m.id_pembina = p.id_pembina LEFT JOIN ( SELECT pt.nim, COUNT(pt.nim) AS total FROM presensi_talim pt LEFT JOIN talim t ON pt.id_talim = t.id_talim WHERE t.id_pekan = $idPekan GROUP BY pt.nim ) ta ON m.nim = ta.nim LEFT JOIN ( SELECT t.id_pembina, COUNT(t.id_pembina) AS target FROM talim t WHERE t.id_pekan = $idPekan GROUP BY t.id_pembina ) tl ON m.id_pembina = tl.id_pembina LEFT JOIN ( SELECT ut.nim, COUNT(ut.id_udzur) AS jmlu FROM udzur_talim ut LEFT JOIN talim t ON ut.id_talim = t.id_talim WHERE t.id_pekan = $idPekan AND ut.disetujui = 1 GROUP BY ut.nim ) u ON m.nim = u.nim ORDER BY m.nama") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {

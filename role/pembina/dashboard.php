@@ -4,7 +4,7 @@
 
   $idPembina = $_SESSION['id_pembina'];
 
-  $tm = totalBinaanByPembina($idPembina);
+  // $tm = totalBinaanByPembina($idPembina);
   // $tp = totalPelanggaranBinaanByPembina($idPembina);
 ?>
 
@@ -13,7 +13,7 @@
                 <h2>DASHBOARD</h2>
             </div>
             <!-- Widgets -->
-            <div class="row clearfix">
+            <!-- <div class="row clearfix">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="info-box-2 bg-blue">
                         <div class="icon">
@@ -36,6 +36,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- #END# Widgets -->
 </div>

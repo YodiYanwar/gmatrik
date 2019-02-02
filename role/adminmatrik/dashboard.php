@@ -31,7 +31,7 @@
                             <a href="?page=pembina"><i class="material-icons">supervisor_account</i></a>
                         </div>
                         <div class="content">
-                            <div class="text">JUMLAH PEMBINA</div>
+                            <div class="text">JUMLAH PEMBINA MAHASISWA</div>
                             <div class="number count-to" data-from="0" data-to="125" data-speed="1000" data-fresh-interval="20"><?php foreach($tb as $totalPembina){ echo $totalPembina; }?></div>
                         </div>
                     </div>

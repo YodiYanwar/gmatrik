@@ -56,7 +56,7 @@ LEFT JOIN (
 LEFT JOIN (
     SELECT us.nim, SUM(us.shubuh+us.dzuhur+us.ashar+us.maghrib+us.isya) AS jmlu
     FROM udzur_shalat us 
-    WHERE us.disetujui = 1
+    WHERE us.disetujui = 1 AND us.id_pekan = 2
     GROUP BY us.nim
 ) u ON m.nim = u.nim
 LEFT JOIN (
@@ -65,7 +65,7 @@ LEFT JOIN (
     WHERE jp.id_pekan = 2
     GROUP BY jp.gender
 ) g ON m.gender = g.gender
-WHERE p.id_pembina = 13
+WHERE p.id_pembina = 9
 ORDER BY m.nama
 
 -- NILAI PRESENSI SHALAT (With Udzur disetujui + Jadwal Pulang) => MAHASISWA
