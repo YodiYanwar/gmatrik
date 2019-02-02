@@ -1,5 +1,6 @@
 <?php 
   include 'functions.php';
+  $idPembina = $_SESSION['id_pembina'];   
  ?>
 
 <div class="row clearfix">
@@ -24,9 +25,10 @@
                                         </thead>
                                         <tbody>
                                           <?php 
-                                            $dataPekan = tampilPekanTalim();
+                                            $dataPekan = tampilPekanTalimByPembina($idPembina);
                                             $no = 1;
-                                            foreach($dataPekan as $row){
+                                            if (is_array($dataPekan) || is_object($dataPekan)){
+                                              foreach($dataPekan as $row){
                                            ?>
                                         <tr>
                                           <td><b><?php echo $no ?></b></td>  
@@ -37,7 +39,7 @@
                                           <td><a href='?page=nilaitalim&idpekan=<?php echo $row['id_pekan']; ?>' class='btn btn-xs'>Lihat Nilai</a></td>
                                         </tr>
                                           <?php 
-                                             $no++; }
+                                             $no++; } }
                                            ?>      
                                         </tbody> 
                                       </table>

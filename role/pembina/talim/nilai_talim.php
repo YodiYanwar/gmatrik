@@ -2,6 +2,7 @@
   include 'functions.php';
 
   $idPekan = $_GET['idpekan'];
+  $idPembina = $_SESSION['id_pembina'];
  ?>
 
 
@@ -43,7 +44,6 @@
                                   <th>NIM</th>
                                   <th>Nama</th>
                                   <th>Ikhwan/Akhwat</th>
-                                  <th>Pembina Mahasiswa</th>
                                   <th>Perolehan Presensi</th>
                                   <th>Jumlah Udzur</th>
                                   <th>Target</th>
@@ -53,7 +53,7 @@
                               <tbody>
                                 <?php 
                                   $no = 1;
-                                  $nilai = tampilNilaiTalimByPekan($idPekan);
+                                  $nilai = tampilNilaiTalimByPekanByPembina($idPekan, $idPembina);
                                   foreach($nilai as $row){
                                  ?>
                                 <tr>
@@ -61,7 +61,6 @@
                                   <td><?php echo $row['nim']; ?></td>
                                   <td><?php echo $row['nama']; ?></td>
                                   <td><?php if($row['gender'] == 'Ikhwan' || $row['gender'] == 'Laki-laki'){echo '<span class="label bg-light-blue">Ikhwan</span>';} else if($row['gender'] == 'Akhwat' || $row['gender'] == 'Perempuan'){echo '<span class="label bg-pink">Akhwat</span>';} ?></td>
-                                  <td><?php echo $row['namapembina'].' '.$row['gelar']; ?></td>
                                   <td><?php echo $row['total']; ?></td>
                                   <td><?php echo $row['jmlu']; ?></td>
                                   <td><?php echo $row['target2']; ?></td>

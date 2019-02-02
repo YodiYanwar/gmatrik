@@ -9,7 +9,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                          <h2><a href="?page=tahsin" class="btn btn-sm btn-link waves-effect" title="Kembali"><i class="material-icons">arrow_back</i></a>&nbsp;&nbsp;&nbsp;
+                          <h2><a href="?page=talim" class="btn btn-sm btn-link waves-effect" title="Kembali"><i class="material-icons">arrow_back</i></a>&nbsp;&nbsp;&nbsp;
                           TAMBAH DATA TA'LIM & INPUT PRESENSI TA'LIM</h2>
                         </div>
                         <form method="POST" id="formInputPresensiTalim">
