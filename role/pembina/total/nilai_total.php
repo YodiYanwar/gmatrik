@@ -2,6 +2,7 @@
   include 'functions.php';
 
   $idPekan = $_GET['idpekan'];
+  $idPembina = $_SESSION['id_pembina'];   
  ?>
 
 
@@ -53,7 +54,7 @@
                               <tbody>
                                 <?php 
                                   $no = 1;
-                                  $nilai = tampilNilaiTotalnByPekan($idPekan);
+                                  $nilai = tampilNilaiTotalnByPekanByPembina($idPekan, $idPembina);
                                   foreach($nilai as $row){
                                  ?>
                                 <tr>

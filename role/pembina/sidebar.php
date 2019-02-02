@@ -10,8 +10,8 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="?page=profil" style="color:#3C8DBC;"><i class="material-icons">person</i>Profil</a></li>
-                            <li role="seperator" class="divider"></li>
+                            <!-- <li><a href="?page=profil" style="color:#3C8DBC;"><i class="material-icons">person</i>Profil</a></li>
+                            <li role="seperator" class="divider"></li> -->
                             <li><a href="#ModalLogout" data-toggle='modal' style='color:#DD4B39;'><i class="material-icons">power_settings_new</i>Logout</a></li>
                         </ul>
                     </div>
@@ -147,6 +147,31 @@
                             ><a href="?page=udzurtahsin">Data Udzur Tahsin/Tahfidz</a>
                             </li>
                         </ul>
+                        <li <?php 
+                          if (isset($_GET['page'])) {
+                              if ($_GET['page'] == 'pekantotal' || $_GET['page'] == 'nilaitotal') {
+                                echo "class='active'";
+                              } else{
+                                echo '';
+                              }
+                            }
+                          ?>
+                      ><a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">assessment</i>
+                            <span>Nilai Total</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'pekantotal' || $_GET['page'] == 'nilaitotal') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            ><a href="?page=pekantotal">Nilai Presensi Total</a>
+                            </li>
+                        </ul>
+                    </li>
                     </li>
                     <li class="header">PENGGUNA</li>
                     <li <?php 
