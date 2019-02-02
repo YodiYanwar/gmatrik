@@ -78,6 +78,20 @@
 		}
 	}		
 
+	function tampilTahsinRoleMhs($nim){
+		$ambildata = mysql_query("SELECT t.id_tahsin, p.pekan, t.tahsin, t.tanggal, t.deskripsi, COUNT(pt.nim) AS jml FROM tahsin t LEFT JOIN presensi_tahsin pt ON t.id_tahsin = pt.id_tahsin LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) GROUP BY pt.id_tahsin ORDER BY t.tanggal DESC") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} else{
+			echo "<div class='alert alert-warning alert-dismissibl' role='alert'>
+							<button type='button' class='close' data-dismiss='alert' aria-label='Close'></button>
+							Belum Ada Data Tahsin/Tahfidz
+						</div>";
+		}
+	}		
+
 	function tampilTalim($idPembina){
 		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.talim, t.tanggal, t.deskripsi, r.jml FROM talim t LEFT JOIN ( SELECT pt.id_talim, COUNT(pt.nim) AS jml FROM presensi_talim pt GROUP BY pt.id_talim ) r ON t.id_talim = r.id_talim LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = $idPembina GROUP BY t.id_talim ORDER BY t.tanggal DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
@@ -91,6 +105,20 @@
 						</div>";
 		}
 	}		
+
+	function tampilTalimRoleMhs($nim){
+		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.talim, t.tanggal, t.deskripsi, r.jml FROM talim t LEFT JOIN ( SELECT pt.id_talim, COUNT(pt.nim) AS jml FROM presensi_talim pt GROUP BY pt.id_talim ) r ON t.id_talim = r.id_talim LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) GROUP BY t.id_talim ORDER BY t.tanggal DESC") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		} else{
+			echo "<div class='alert alert-warning alert-dismissibl' role='alert'>
+							<button type='button' class='close' data-dismiss='alert' aria-label='Close'></button>
+							Belum Ada Data Ta'lim
+						</div>";
+		}
+	}			
 
 	function tampilTahsinById($idTahsin){
 		$ambildata = mysql_query("SELECT t.* FROM tahsin t WHERE t.id_tahsin = $idTahsin") or die(mysql_error());

@@ -116,7 +116,7 @@
 
         importShalat2(18, $datefrom, $dateto, $shubuhFrom, $shubuhTo, $dzuhurFrom, $dzuhurTo, $asharFrom, $asharTo, $maghribFrom, $maghribTo, $isyaFrom, $isyaTo);
 
-        echo "<script>document.location='?page=shalat'</script>";
+        echo "<script>document.location='?page=pekanshalat'</script>";
       }
 ?>
 

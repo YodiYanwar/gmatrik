@@ -193,20 +193,24 @@ INNER JOIN pembina_mahasiswa p ON m.id_pembina = p.id_pembina
 LEFT JOIN (
     SELECT pt.nim, COUNT(pt.nim) AS total
     FROM presensi_talim pt 
+    LEFT JOIN talim t ON pt.id_talim = t.id_talim
+    WHERE t.id_pekan = 1
     GROUP BY pt.nim
 ) ta ON m.nim =  ta.nim
 LEFT JOIN (
     SELECT t.id_pembina, COUNT(t.id_pembina) AS target
     FROM talim t
+    WHERE t.id_pekan = 1
     GROUP BY t.id_pembina
 ) tl ON m.id_pembina = tl.id_pembina
 LEFT JOIN (
     SELECT ut.nim, COUNT(ut.id_udzur) AS jmlu
     FROM udzur_talim ut
-    WHERE ut.disetujui = 1
+    LEFT JOIN talim t ON ut.id_talim = t.id_talim
+    WHERE ut.disetujui = 1 AND t.id_pekan = 1
     GROUP BY ut.nim
 ) u ON m.nim = u.nim
-WHERE m.nim = 18108021
+WHERE m.nim = 18103033
 ORDER BY m.nama
 
 -- DATA PEKAN PRESENSI TAHSIN (With Total) => ADMINMATRIK / PIMPINAN
@@ -309,20 +313,24 @@ INNER JOIN pembina_mahasiswa p ON m.id_pembina = p.id_pembina
 LEFT JOIN (
     SELECT pt.nim, COUNT(pt.nim) AS total
     FROM presensi_tahsin pt 
+    LEFT JOIN tahsin t ON pt.id_tahsin = t.id_tahsin
+    WHERE t.id_pekan = 1
     GROUP BY pt.nim
 ) ta ON m.nim =  ta.nim
 LEFT JOIN (
     SELECT t.id_pembina, COUNT(t.id_pembina) AS target
     FROM tahsin t
+    WHERE t.id_pekan = 1
     GROUP BY t.id_pembina
 ) tl ON m.id_pembina = tl.id_pembina
 LEFT JOIN (
     SELECT ut.nim, COUNT(ut.id_udzur) AS jmlu
     FROM udzur_tahsin ut
-    WHERE ut.disetujui = 1
+    LEFT JOIN tahsin t ON ut.id_tahsin = t.id_tahsin
+    WHERE ut.disetujui = 1 AND t.id_pekan = 1
     GROUP BY ut.nim
 ) u ON m.nim = u.nim
-WHERE m.nim = 18103021
+WHERE m.nim = 18103033
 ORDER BY m.nama
 
 
