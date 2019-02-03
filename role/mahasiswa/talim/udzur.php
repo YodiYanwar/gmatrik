@@ -82,7 +82,7 @@ var addFormGroup  = function (event) {
                   <form method="POST" name="formUdzurTahsin" id="formUdzurTahsin">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h4 class="modal-title" id="smallModalLabel">INPUT DATA UDZUR TAHSIN/TAHFIDZ</h4>
+                        <h4 class="modal-title" id="smallModalLabel">INPUT DATA UDZUR TA'LIM</h4>
                       </div>
                       <div class="modal-body">
                           <div class="form-group multiple-form-group" id="defaultForm">          

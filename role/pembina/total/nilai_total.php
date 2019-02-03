@@ -44,7 +44,6 @@
                                   <th>NIM</th>
                                   <th>Nama</th>
                                   <th>Ikhwan/Akhwat</th>
-                                  <th>Pembina Mahasiswa</th>
                                   <th>Shalat</th>
                                   <th>Ta'lim</th>
                                   <th>Tahsin/Tahfidz</th>
@@ -62,7 +61,6 @@
                                   <td><?php echo $row['nim']; ?></td>
                                   <td><?php echo $row['nama']; ?></td>
                                   <td><?php if($row['gender'] == 'Ikhwan' || $row['gender'] == 'Laki-laki'){echo '<span class="label bg-light-blue">Ikhwan</span>';} else if($row['gender'] == 'Akhwat' || $row['gender'] == 'Perempuan'){echo '<span class="label bg-pink">Akhwat</span>';} ?></td>
-                                  <td><?php echo $row['namapembina'].' '.$row['gelar']; ?></td>
                                   <td><?php echo $row['shalat']; ?></td>
                                   <td><?php echo $row['talim']; ?></td>
                                   <td><?php echo $row['tahsin']; ?></td>

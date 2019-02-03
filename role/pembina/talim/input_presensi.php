@@ -54,7 +54,7 @@
                                           <tr>
                                             <th>Hadir?</th>
                                             <th>NIM</th>
-                                            <th>Nama</th>
+                                            <th>Nama Mahasiswa</th>
                                           </tr>
                                         </thead>
                                         <tbody>

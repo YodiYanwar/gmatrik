@@ -18,6 +18,7 @@
                                           <tr>
                                             <th>#</th>
                                             <th>Username</th>
+                                            <th>Password</th>
                                             <th>Password Default</th>
                                             <th>Level Akses</th>
                                             <th>Terakhir Login</th>
@@ -34,7 +35,8 @@
                                         <tr>
                                           <td><b><?php echo $no; ?></b></td>  
                                           <td><?php echo $row['username'];?></td>
-                                          <td><?php if($row['password_default'] == 0){echo '<span class="label bg-light-blue">Sudah Diganti</span>';} else {echo $row['password'];} ?></td>
+                                          <td><?php if($row['password_default'] == 0){echo '-';} else {echo $row['password'];} ?></td>
+                                          <td><?php if($row['password_default'] == 0){echo '<span class="label bg-light-blue">Sudah Diganti</span>';} else {echo 'Ya';} ?></td>
                                           <td><?php if($row['level'] == 1){echo 'Admin Matrikulasi';}else if($row['level'] == 2){echo 'Pembina Mahasiswa';}else if($row['level'] == 3){echo 'Mahasiswa';}else if($row['level'] == 4){echo 'Pimpinan';} ?></td>
                                           <td><?php if($row['terakhir_login'] == NULL){echo 'Belum Pernah';}else{echo $row['terakhir_login'];} ?></td>
                                           <td>

@@ -86,12 +86,12 @@ var addFormGroup  = function (event) {
                       </div>
                       <div class="modal-body">
                           <div class="form-group multiple-form-group" id="defaultForm">          
-                                      <label>Tanggal :</label><br>
+                                      <label>Udzur Pada Tahsin :</label><br>
                                         <select class="form-control show-tick" data-live-search="true" name="idTahsin" required>
                                           <option value="">-- Pilih Tahsin --</option>
                                                         <?php $t = tampilTahsinForUdzurRoleMhs($nim);
                                                           foreach($t as $row){
-                                                            echo '<option value="'.$row['id_tahsin'].'">'.date('d/m/Y', strtotime($row['tanggal'])).' - '.$row['tahsin'].'</option>';
+                                                            echo '<option value="'.$row['id_tahsin'].'">'.$row['tahsin'].' - '.date('d/m/Y', strtotime($row['tanggal'])).'</option>';
                                                           } 
                                                         ?>
                                         </select> 
