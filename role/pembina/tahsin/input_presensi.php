@@ -96,7 +96,7 @@
               inputTahsinPresensi($nim, $idPembina, $_POST['tgltahsin'], $_POST['namatahsin']);
             }
           }
-        echo "<script>document.location='index.php'</script>";
+        echo "<script>document.location='?page=tahsin'</script>";
         }
     ?>
 
