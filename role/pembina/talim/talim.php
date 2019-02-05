@@ -20,7 +20,6 @@
                                   <th>#</th>
                                   <th>Pekan ke</th>
                                   <th>Hari - Tanggal</th>
-                                  <th>Ta'lim</th>
                                   <th>Deskripsi</th>
                                   <th>Jumlah Hadir Mahasiswa Binaan</th>
                                   <th>Aksi</th>
@@ -38,7 +37,6 @@
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo $row['pekan']; ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php if($row['talim'] == 'badaisya'){echo "Ba'da Isya";}else if($row['talim'] == 'badaashar'){echo "Ba'da Ashar";} ?></td>
                                   <td><?php echo $row['deskripsi']; ?></td>
                                   <td><?php echo $row['jml']; ?></td>
                                   <td><a href='?page=presensitalim&id=<?php echo $row['id_talim']; ?>' class='btn btn-xs'>Lihat Data Presensi</a></td>

@@ -14,7 +14,7 @@
                             <?php 
                                   $dataTalim = tampilTalimById($idTalim);
                                     foreach($dataTalim as $row){
-                                      echo 'Tanggal : '.$row['tanggal'].'<br>Talim : '.$row['talim'].'<br>Deskripsi : '.$row['deskripsi'];
+                                      echo 'Tanggal : '.$row['tanggal'].'<br>Deskripsi : '.$row['deskripsi'];
                                     }
                             ?>
                           </small>

@@ -45,7 +45,6 @@ var addFormGroup  = function (event) {
                                   <th>#</th>
                                   <th>Nama Mahasiswa</th>
                                   <th>Tanggal</th>
-                                  <th>Ta'lim</th>
                                   <th>Udzur</th>
                                   <th>Keterangan</th>
                                   <th>Diajukan</th>
@@ -64,7 +63,7 @@ var addFormGroup  = function (event) {
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo $row['nama']; ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php echo $row['talim']; ?></td>
+                                 
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['keterangan']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>

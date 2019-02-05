@@ -45,7 +45,6 @@ var addFormGroup  = function (event) {
                                 <tr>
                                   <th>#</th>
                                   <th>Hari - Tanggal</th>
-                                  <th>Ta'lim</th>
                                   <th>Udzur</th>
                                   <th>Keterangan</th>
                                   <th>Diajukan</th>
@@ -63,7 +62,6 @@ var addFormGroup  = function (event) {
                                 <tr>
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php echo $row['talim']; ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['keterangan']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>
@@ -86,12 +84,12 @@ var addFormGroup  = function (event) {
                       </div>
                       <div class="modal-body">
                           <div class="form-group multiple-form-group" id="defaultForm">          
-                                      <label>Udzur Pada Ta'lim :</label><br>
+                                      <label>Udzur Ta'lim Pada Tanggal :</label><br>
                                         <select class="form-control show-tick" data-live-search="true" name="idTalim" required>
-                                          <option value="">-- Pilih Ta'lim --</option>
+                                          <option value="">-- Pilih Tanggal Ta'lim --</option>
                                                         <?php $t = tampilTalimForUdzurRoleMhs($nim);
                                                           foreach($t as $row){
-                                                            echo '<option value="'.$row['id_talim'].'">'.$row['talim'].' - '.date('d/m/Y', strtotime($row['tanggal'])).'</option>';
+                                                            echo '<option value="'.$row['id_talim'].'">'.date('d/m/Y', strtotime($row['tanggal'])).' - '.$row['deskripsi'].'</option>';
                                                           } 
                                                         ?>
                                         </select> 

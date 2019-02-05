@@ -32,7 +32,7 @@
 	}	
 
 	function tampilUdzurTalimRoleMhs($nim){
-		$ambildata = mysql_query("SELECT tu.id_udzur, tu.id_talim, t.tanggal, t.talim, tu.nim, tu.udzur, tu.keterangan, tu.diajukan, tu.disetujui FROM udzur_talim tu LEFT JOIN talim t ON tu.id_talim = t.id_talim WHERE tu.nim = $nim") or die(mysql_error());
+		$ambildata = mysql_query("SELECT tu.id_udzur, tu.id_talim, t.tanggal, tu.nim, tu.udzur, tu.keterangan, tu.diajukan, tu.disetujui FROM udzur_talim tu LEFT JOIN talim t ON tu.id_talim = t.id_talim WHERE tu.nim = $nim") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -55,7 +55,7 @@
 	}		
 
 	function tampilTalimForUdzurRoleMhs($nim){
-		$ambildata = mysql_query("SELECT t.id_talim, t.tanggal, t.talim, t.deskripsi  FROM talim t WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) ORDER BY t.tanggal DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT t.id_talim, t.tanggal, t.deskripsi  FROM talim t WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) ORDER BY t.tanggal DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -93,7 +93,7 @@
 	}		
 
 	function tampilTalim($idPembina){
-		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.talim, t.tanggal, t.deskripsi, r.jml FROM talim t LEFT JOIN ( SELECT pt.id_talim, COUNT(pt.nim) AS jml FROM presensi_talim pt GROUP BY pt.id_talim ) r ON t.id_talim = r.id_talim LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = $idPembina GROUP BY t.id_talim ORDER BY t.tanggal DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.tanggal, t.deskripsi, r.jml FROM talim t LEFT JOIN ( SELECT pt.id_talim, COUNT(pt.nim) AS jml FROM presensi_talim pt GROUP BY pt.id_talim ) r ON t.id_talim = r.id_talim LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = $idPembina GROUP BY t.id_talim ORDER BY t.tanggal DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -107,7 +107,7 @@
 	}		
 
 	function tampilTalimRoleMhs($nim){
-		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.talim, t.tanggal, t.deskripsi, r.jml FROM talim t LEFT JOIN ( SELECT pt.id_talim, COUNT(pt.nim) AS jml FROM presensi_talim pt GROUP BY pt.id_talim ) r ON t.id_talim = r.id_talim LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) GROUP BY t.id_talim ORDER BY t.tanggal DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT t.id_talim, p.pekan, t.tanggal, t.deskripsi, r.jml FROM talim t LEFT JOIN ( SELECT pt.id_talim, COUNT(pt.nim) AS jml FROM presensi_talim pt GROUP BY pt.id_talim ) r ON t.id_talim = r.id_talim LEFT JOIN presensi_talim pt ON t.id_talim = pt.id_talim LEFT JOIN pekan p ON t.id_pekan = p.id_pekan WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) GROUP BY t.id_talim ORDER BY t.tanggal DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -186,7 +186,7 @@
 	}		
 
 	function tampilUdzurTalimRolePembina($idPembina){
-		$ambildata = mysql_query("SELECT ut.id_udzur, t.tanggal, ut.id_talim, t.talim, ut.nim, m.nama, ut.udzur, ut.keterangan, ut.diajukan, ut.disetujui FROM udzur_talim ut LEFT JOIN mahasiswa m ON ut.nim = m.nim LEFT JOIN talim t ON ut.id_talim = t.id_talim WHERE t.id_pembina = $idPembina ORDER BY ut.diajukan DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT ut.id_udzur, t.tanggal, ut.id_talim, ut.nim, m.nama, ut.udzur, ut.keterangan, ut.diajukan, ut.disetujui FROM udzur_talim ut LEFT JOIN mahasiswa m ON ut.nim = m.nim LEFT JOIN talim t ON ut.id_talim = t.id_talim WHERE t.id_pembina = $idPembina ORDER BY ut.diajukan DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -461,9 +461,9 @@
 		mysql_query("INSERT INTO tahsin(id_pekan, id_pembina, tahsin, tanggal, deskripsi) VALUES (((SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai)), $idPembina, '$tahsin', '$tgl_', '$deskripsi');");
 	}		
 
-	function inputTalim($idPembina, $talim, $tgl, $deskripsi){
+	function inputTalim($idPembina,  $tgl, $deskripsi){
 		$tgl_ = date('Y-m-d', strtotime($tgl));
-		mysql_query("INSERT INTO talim(id_pekan, id_pembina, talim, tanggal, deskripsi) VALUES (((SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai)), $idPembina, '$talim', '$tgl_', '$deskripsi');");
+		mysql_query("INSERT INTO talim(id_pekan, id_pembina, tanggal, deskripsi) VALUES (((SELECT p.id_pekan FROM pekan p WHERE '$tgl_' BETWEEN p.tanggal_dari AND p.tanggal_sampai)), $idPembina, '$tgl_', '$deskripsi');");
 	}		
 
 	function inputTahsinPresensi($nim, $idPembina, $tgl, $tahsin){
@@ -471,9 +471,9 @@
 		mysql_query("INSERT INTO presensi_tahsin (id_tahsin, nim) VALUES ((SELECT t.id_tahsin FROM tahsin t WHERE t.id_pembina = $idPembina AND t.tanggal = '$tgl_' AND t.tahsin = '$tahsin'), $nim)");
 	}	
 
-	function inputTalimPresensi($nim, $idPembina, $tgl, $talim){
+	function inputTalimPresensi($nim, $idPembina, $tgl){
 		$tgl_ = date('Y-m-d', strtotime($tgl));
-		mysql_query("INSERT INTO presensi_talim (id_talim, nim) VALUES ((SELECT t.id_talim FROM talim t WHERE t.id_pembina = $idPembina AND t.tanggal = '$tgl_' AND t.talim = '$talim'), $nim)");
+		mysql_query("INSERT INTO presensi_talim (id_talim, nim) VALUES ((SELECT t.id_talim FROM talim t WHERE t.id_pembina = $idPembina AND t.tanggal = '$tgl_'), $nim)");
 	}		
 
 	function tahsinByMhsRolePembina($idPembina){

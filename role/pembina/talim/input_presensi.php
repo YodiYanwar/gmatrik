@@ -15,18 +15,18 @@
                         <form method="POST" id="formInputPresensiTalim">
                         <div class="body">   
                           <div class="row">
-                            <div class="col col-sm-4">
+                            <!-- <div class="col col-sm-4">
                               <div class="input-group">
                                       <label>Ta'lim :</label>
                                       <div class="form-line">
-                                        <select class="form-control show-tick" name="namatalim" required>
+                                        <select class="form-control show-tick" name="namatalim">
                                           <option value="">- Pilih Ta'lim -</option>
                                           <option value="badaashar">Tahsin Ba'da Ashar</option>
                                           <option value="badaisya">Ta'lim Ba'da Isya</option>
                                         </select>
                                       </div>
                                     </div>
-                            </div>
+                            </div> -->
                             <div class="col col-sm-4">
                               <div class="input-group">
                                       <label>Tanggal :</label>
@@ -39,7 +39,7 @@
                               <div class="input-group">
                                       <label>Deskripsi :</label>
                                       <div class="form-line">
-                                        <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi Materi Ta'lim" /><br>
+                                        <input type="text" class="form-control" name="deskripsi" placeholder="Materi Ta'lim" /><br>
                                       </div>
                                     </div>
                             </div>
@@ -89,11 +89,11 @@
     <?php 
      
         if (isset($_POST['submitPresensiTalim'])) {
-          inputTalim($idPembina, $_POST['namatalim'], $_POST['tgltalim'], $_POST['deskripsi']);
+          inputTalim($idPembina,  $_POST['tgltalim'], $_POST['deskripsi']);
 
           if(!empty($_POST['nim'])) {
             foreach($_POST['nim'] as $nim) {
-              inputTalimPresensi($nim, $idPembina, $_POST['tgltalim'], $_POST['namatalim']);
+              inputTalimPresensi($nim, $idPembina, $_POST['tgltalim']);
             }
           }
         echo "<script>document.location='index.php?page=talim'</script>";
