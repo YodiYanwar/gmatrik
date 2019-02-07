@@ -124,7 +124,7 @@
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="material-icons">assignment_ind</i>
+                                            <i class="material-icons">account_circle</i>
                                         </span>
                                         <div class="form-line">
                                             <input type="text" name="nama" class="form-control date" placeholder="Nama" required>
@@ -146,7 +146,7 @@
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="material-icons">person_outline</i>
+                                            <i class="material-icons">wc</i>
                                         </span>
                                         <select class="form-control show-tick" name="gender" required>
                                           <option value="">-- Ikhwan/Akhwat --</option>
@@ -177,7 +177,7 @@
                                 <div class="col-sm-12">
                                   <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="material-icons">bookmark</i>
+                                            <i class="material-icons">turned_in_not</i>
                                         </span>
                                         <div class="form-line">
                                             <input type="number" name="angkatan" class="form-control date" placeholder="Angkatan" required>
@@ -188,7 +188,7 @@
                                 <div class="col-sm-12">
                                   <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="material-icons">home</i>
+                                            <i class="material-icons">location_city</i>
                                         </span>
                                         <div class="form-line">
                                             <input type="text" name="kotaasal" class="form-control date" placeholder="Kota Asal" required>

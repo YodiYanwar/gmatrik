@@ -59,7 +59,7 @@
                                 <tr>
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo $row['nim']; ?></td>
-                                  <td><?php echo $row['nama']; ?></td>
+                                  <td><?php echo $row['nama'].' '.$row['gelar']; ?></td>
                                   <td><?php if($row['gender'] == 'Ikhwan' || $row['gender'] == 'Laki-laki'){echo '<span class="label bg-light-blue">Ikhwan</span>';} else if($row['gender'] == 'Akhwat' || $row['gender'] == 'Perempuan'){echo '<span class="label bg-pink">Akhwat</span>';} ?></td>
                                   <td><?php echo $row['total']; ?></td>
                                   <td><?php echo $row['jmlu']; ?></td>
