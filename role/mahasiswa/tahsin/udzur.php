@@ -103,7 +103,7 @@ var addFormGroup  = function (event) {
                           <label for="is">IZIN SYAR'I</label>&nbsp;&nbsp;
                                 <br><br>
                           <label>Keterangan :</label><br>
-                          <input type="text" class="form-control" name="keterangan" placeholder="Keterangan Udzur"/>
+                          <input type="text" class="form-control" name="keterangan" placeholder="Keterangan Udzur" required/>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary waves-effect" name="submitUdzur">SUBMIT</button>

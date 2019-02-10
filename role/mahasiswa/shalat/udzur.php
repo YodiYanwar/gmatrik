@@ -202,7 +202,7 @@ $(document).on('click', '.btn-add', addFormGroup);
 
                                         </select> --><br><br>
                                         <label>Keterangan :</label>
-                                          <input type="text" class="form-control" name="keterangan" placeholder="Keterangan Udzur"/><br>
+                                          <input type="text" class="form-control" name="keterangan" placeholder="Keterangan Udzur" required/><br>
                                           
                                       <!-- <label>Keterangan :</label><br>
                                       <input type="text" class="form-control" name="keterangan" placeholder="Keterangan Udzur"/> -->

@@ -349,19 +349,19 @@ LEFT JOIN (
     LEFT JOIN (
         SELECT ps.nim, SUM(ps.shubuh+ps.dzuhur+ps.ashar+ps.maghrib+ps.isya) AS total
         FROM presensi_shalat ps 
-        WHERE ps.id_pekan = 1
+        WHERE ps.id_pekan = 2
         GROUP BY ps.nim
     ) s ON m.nim = s.nim
     LEFT JOIN (
         SELECT us.nim, SUM(us.shubuh+us.dzuhur+us.ashar+us.maghrib+us.isya) AS jmlu
         FROM udzur_shalat us 
-        WHERE us.disetujui = 1 AND us.id_pekan = 1
+        WHERE us.disetujui = 1 AND us.id_pekan = 2
         GROUP BY us.nim
     ) u ON m.nim = u.nim
     LEFT JOIN (
         SELECT jp.gender, SUM(jp.shubuh+jp.dzuhur+jp.ashar+jp.maghrib+jp.isya) AS jplg
         FROM jadwal_pulang jp 
-        WHERE jp.id_pekan = 1
+        WHERE jp.id_pekan = 2
         GROUP BY jp.gender
     ) g ON m.gender = g.gender 
 ) s ON m.nim = s.nim
@@ -373,20 +373,20 @@ LEFT JOIN (
         SELECT pt.nim, COUNT(pt.nim) AS total 
         FROM presensi_talim pt 
         LEFT JOIN talim t ON pt.id_talim = t.id_talim
-        WHERE t.id_pekan = 1
+        WHERE t.id_pekan = 2
         GROUP BY pt.nim 
     ) ta ON m.nim = ta.nim 
     LEFT JOIN ( 
         SELECT t.id_pembina, COUNT(t.id_pembina) AS target 
         FROM talim t 
-        WHERE t.id_pekan = 1
+        WHERE t.id_pekan = 2
         GROUP BY t.id_pembina 
     ) tl ON m.id_pembina = tl.id_pembina 
     LEFT JOIN ( 
         SELECT ut.nim, COUNT(ut.id_udzur) AS jmlu 
         FROM udzur_talim ut 
         LEFT JOIN talim t ON ut.id_talim = t.id_talim
-        WHERE t.id_pekan = 1 AND ut.disetujui = 1 
+        WHERE t.id_pekan = 2 AND ut.disetujui = 1 
         GROUP BY ut.nim 
     ) u ON m.nim = u.nim    
 ) tl ON m.nim = tl.nim
@@ -398,20 +398,20 @@ LEFT JOIN (
         SELECT pt.nim, COUNT(pt.nim) AS total
         FROM presensi_tahsin pt 
         LEFT JOIN tahsin t ON pt.id_tahsin = t.id_tahsin
-        WHERE t.id_pekan = 1
+        WHERE t.id_pekan = 2
         GROUP BY pt.nim
     ) ta ON m.nim =  ta.nim
     LEFT JOIN (
         SELECT t.id_pembina, COUNT(t.id_pembina) AS target
         FROM tahsin t
-        WHERE t.id_pekan = 1
+        WHERE t.id_pekan = 2
         GROUP BY t.id_pembina
     ) tl ON m.id_pembina = tl.id_pembina
     LEFT JOIN (
         SELECT ut.nim, COUNT(ut.id_udzur) AS jmlu
         FROM udzur_tahsin ut
         LEFT JOIN tahsin t ON ut.id_tahsin = t.id_tahsin
-        WHERE t.id_pekan = 1 AND ut.disetujui = 1
+        WHERE t.id_pekan = 2 AND ut.disetujui = 1
         GROUP BY ut.nim
     ) u ON m.nim = u.nim    
 ) th ON m.nim = th.nim
