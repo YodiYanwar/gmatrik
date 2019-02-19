@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2019 at 03:44 AM
+-- Generation Time: Feb 19, 2019 at 04:48 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -373,7 +373,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `level`, `terakhir_login`) VALUES
 (1, 'adminmatrik', 'bismillah', 0, 1, '2019-02-19 05:52:33'),
 (3, '18000372', 'mahasiswa123', 0, 3, NULL),
-(4, 'hasan', 'hasan123', 0, 4, '2019-02-03 07:53:08'),
+(4, 'hasan', 'hasan123', 0, 4, '2019-02-19 10:30:01'),
 (11, 'Rizki', 'akbar123', 0, 2, '2019-02-10 08:28:13'),
 (16, 'Lilik', 'lilik123', 0, 2, '2019-02-10 08:40:31'),
 (24, '18103005', 'jVDD9568nl', 1, 3, NULL),
@@ -381,7 +381,7 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `lev
 (30, '18103033', '802l94FVUt', 1, 3, '2019-02-07 07:53:01'),
 (38, '18103013', 'pPw1XREMme', 1, 3, NULL),
 (50, '18102042', '100hIQYyLz', 1, 3, '2019-02-19 06:41:34'),
-(64, '18101118', '5v22Nv208J', 1, 3, '2019-02-19 06:35:39'),
+(64, '18101118', '5v22Nv208J', 1, 3, '2019-02-19 10:38:08'),
 (84, '18104001', '8M3303OD89', 1, 3, '2019-02-10 08:27:30'),
 (89, '18102002', 'hY59zE12Oq', 1, 3, NULL),
 (90, '18102017', 'dzVub7u04C', 1, 3, NULL),
@@ -417,9 +417,9 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `lev
 (365, '18103072', '4sBnXqp23d', 1, 3, NULL),
 (375, '18101001', 'R75obhKivZ', 1, 3, NULL),
 (394, '18101041', '5Dr26i6LV9', 1, 3, NULL),
-(402, 'ariprahman', '41db8Ud5ZE', 1, 2, NULL),
-(403, 'alfrida', 'Q2gOCX3gxy', 1, 2, NULL),
-(411, 'bintang', 'g8X3m0dCot', 1, 2, NULL);
+(402, 'ariprahman', 'ariprahman123', 0, 4, '2019-02-19 09:48:52'),
+(403, 'alfrida', 'alfrida123', 0, 2, '2019-02-19 10:42:42'),
+(411, 'bintang', 'bintang123', 0, 2, '2019-02-19 10:46:20');
 
 --
 -- Indexes for dumped tables
@@ -443,6 +443,7 @@ ALTER TABLE `jadwal_pulang`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`nim`),
+  ADD UNIQUE KEY `id_user_2` (`id_user`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_pembina` (`id_pembina`);
 
@@ -458,6 +459,7 @@ ALTER TABLE `pekan`
 --
 ALTER TABLE `pembina_mahasiswa`
   ADD PRIMARY KEY (`id_pembina`),
+  ADD UNIQUE KEY `id_user_2` (`id_user`),
   ADD KEY `id_user` (`id_user`);
 
 --
@@ -559,7 +561,7 @@ ALTER TABLE `pekan`
 -- AUTO_INCREMENT for table `pembina_mahasiswa`
 --
 ALTER TABLE `pembina_mahasiswa`
-  MODIFY `id_pembina` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_pembina` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `pimpinan`
 --
@@ -599,7 +601,7 @@ ALTER TABLE `udzur_talim`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=431;
 --
 -- Constraints for dumped tables
 --
