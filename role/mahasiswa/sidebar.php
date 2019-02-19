@@ -173,6 +173,86 @@
                         </ul>
                     </li>
                     </li>
+
+                    <li class="header">ADMINISTRATIF</li>
+                    <li <?php 
+                          if (isset($_GET['page'])) {
+                              if ($_GET['page'] == 'jplg') {
+                                echo "class='active'";
+                              } else{
+                                echo '';
+                              }
+                            }
+                          ?>
+                        >
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">card_travel</i>
+                            <span>Jadwal Kepulangan</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li  <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'jplg' || $_GET['page'] == 'jplgdetail') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                              ><a href="?page=jplg">Data Jadwal Pulang</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li <?php 
+                          if (isset($_GET['page'])) {
+                              if ($_GET['page'] == 'pekan') {
+                                echo "class='active'";
+                              } else{
+                                echo '';
+                              }
+                            }
+                          ?>
+                        >
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">calendar_today</i>
+                            <span>Pekan</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li  <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'pekan') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                              ><a href="?page=pekan">Data Pekan</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li <?php 
+                          if (isset($_GET['page'])) {
+                              if ($_GET['page'] == 'semester') {
+                                echo "class='active'";
+                              } else{
+                                echo '';
+                              }
+                            }
+                          ?>
+                      ><a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">book</i>
+                            <span>Semester</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'semester') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            ><a href="?page=semester">Data Semester</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
                     <li class="header">PENGGUNA</li>
                     <li <?php 
                                   if (isset($_GET['page'])) {
@@ -290,6 +370,12 @@
               include 'total/pekan_total.php';
             } else if ($_GET['page'] == 'nilaitotal') {
               include 'total/nilai_total.php';
+            } else if ($_GET['page'] == 'pekan') {
+              include 'pekan/pekan.php';
+            } else if ($_GET['page'] == 'semester') {
+              include 'semester/semester.php';
+            } else if ($_GET['page'] == 'jplg') {
+              include 'shalat/jplg.php';
             }
         } else{
             include 'dashboard.php';

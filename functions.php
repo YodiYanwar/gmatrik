@@ -803,8 +803,21 @@
 
 				$mysql_insert_mhs = "INSERT INTO mahasiswa (nim, id_user, id_pembina, nama, gender, angkatan, kota_asal, telepon, aktif) VALUES ('$nim', '".$id_user."', '$idPembina', '$nama', '$gender', '$angkatan', '$kotaasal', '$telepon', 1)";
 				mysql_query($mysql_insert_mhs);
-				//echo $row_mdb['Name']." Berhasil diinput <br>";
-			//}
+
+
+				/*mysql_query("INSERT INTO users(username, password, password_default, level) VALUES ('$nim', '$_randpass', '1', '3')");
+
+				$sql = mysql_query("SELECT id_user FROM users WHERE username='$nim'") or die(mysql_error());
+				$row = mysql_fetch_assoc($sql);
+				$id_user = $row['id_user'];
+
+				if (mysql_num_rows($row) == 1) {
+					echo "<script>document.location='?page=mahasiswa&alert=duplicatenim'</script>";
+				} else{
+					mysql_query("INSERT INTO mahasiswa (nim, id_user, id_pembina, nama, gender, angkatan, kota_asal, telepon, aktif) VALUES ('$nim', '".$id_user."', '$idPembina', '$nama', '$gender', '$angkatan', '$kotaasal', '$telepon', 1)");
+
+					echo "<script>document.location='?page=mahasiswa'</script>";
+				}	*/		
 	}
 
 
@@ -822,6 +835,7 @@
 
 				$mysql_insert_pembina = "INSERT INTO pembina_mahasiswa (id_user, nama, gelar, gender, kota_asal, telepon) VALUES ('".$id_user."', '$nama', '$gelar', '$gender', '$kotaasal', '$telepon')";
 				mysql_query($mysql_insert_pembina);
+
 	}	
 
 

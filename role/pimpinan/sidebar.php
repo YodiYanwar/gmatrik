@@ -128,7 +128,110 @@
                         </ul>
                     </li>
                     </li>
+
+                    <li class="header">ADMINISTRATIF</li>
+                    <li <?php 
+                          if (isset($_GET['page'])) {
+                              if ($_GET['page'] == 'pekan') {
+                                echo "class='active'";
+                              } else{
+                                echo '';
+                              }
+                            }
+                          ?>
+                        >
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">calendar_today</i>
+                            <span>Pekan</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li  <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'pekan') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                              ><a href="?page=pekan">Data Pekan</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li <?php 
+                          if (isset($_GET['page'])) {
+                              if ($_GET['page'] == 'semester') {
+                                echo "class='active'";
+                              } else{
+                                echo '';
+                              }
+                            }
+                          ?>
+                      ><a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">book</i>
+                            <span>Semester</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'semester') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            ><a href="?page=semester">Data Semester</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="header">PENGGUNA</li>
+
+                    <li <?php 
+                          if (isset($_GET['page'])) {
+                            if ($_GET['page'] == 'pembina' || $_GET['page'] == 'pembinadetails' || $_GET['page'] == 'editpembina' || $_GET['page'] == 'tambahbinaan') {
+                              echo "class='active'";
+                            }
+                          }
+                        ?>
+                    ><a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">supervisor_account</i>
+                            <span>Pembina Mahasiswa</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'pembina' || $_GET['page'] == 'pembinadetails' || $_GET['page'] == 'editpembina' || $_GET['page'] == 'tambahbinaan') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            ><a href="?page=pembina">Data Pembina Mahasiswa</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'mahasiswa' || $_GET['page'] == 'mahasiswadetails' || $_GET['page'] == 'editmahasiswa' || $_GET['page'] == 'ortu' || $_GET['page'] == 'ortudetail' || $_GET['page'] == 'editortu') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            >
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <span>Mahasiswa</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li <?php 
+                                  if (isset($_GET['page'])) {
+                                    if ($_GET['page'] == 'mahasiswa' || $_GET['page'] == 'mahasiswadetails' || $_GET['page'] == 'editmahasiswa') {
+                                      echo "class='active'";
+                                    }
+                                  }
+                                ?>
+                            ><a href="?page=mahasiswa">Data Mahasiswa</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li <?php 
                                   if (isset($_GET['page'])) {
                                     if ($_GET['page'] == 'ubahpassword') {
@@ -226,6 +329,14 @@
               include 'total/pekan_total.php';
             } else if ($_GET['page'] == 'nilaitotal') {
               include 'total/nilai_total.php';
+            } else if ($_GET['page'] == 'mahasiswa') {
+              include 'mahasiswa/mahasiswa.php';
+            } else if ($_GET['page'] == 'pembina') {
+              include 'pembina/pembina.php';
+            } else if ($_GET['page'] == 'pekan') {
+              include 'pekan/pekan.php';
+            } else if ($_GET['page'] == 'semester') {
+              include 'semester/semester.php';
             }
         } else{
             include 'dashboard.php';

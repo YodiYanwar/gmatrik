@@ -4,6 +4,18 @@
 
 <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+  <?php 
+              if (isset($_GET['alert'])) {
+                if ($_GET['alert'] == 'duplicatenim') {
+                  echo "<div class='alert bg-red alert-dismissible' role='alert'>
+                                <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                                <strong>Tambah Mahasiswa Gagal !</strong> NIM tidak boleh sama
+                            </div>";
+                }
+              }
+             ?> 
+
                     <div class="card">
                         <div class="header">
                           <h2>DATA MAHASISWA &nbsp;&nbsp;&nbsp;
@@ -287,7 +299,7 @@
 
       if (isset($_POST['tambahMahasiswa'])) {
         tambahMahasiswa($_POST['nim'], $_POST['idPembina'], $_POST['nama'], $_POST['gender'], $_POST['angkatan'], $_POST['kotaasal'], $_POST['telepon']);
-        echo "<script>document.location='index.php?page=mahasiswa'</script>";
+        // echo "<script>document.location='index.php?page=mahasiswa'</script>";
       }
 
 /*      if (isset($_POST['importMahasiswa'])) {
