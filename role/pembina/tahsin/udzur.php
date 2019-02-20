@@ -64,7 +64,7 @@ var addFormGroup  = function (event) {
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo $row['nama']; ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php echo $row['tahsin']; ?></td>
+                                  <td><?php echo ($row['tahsin'] == 'badashubuh' ? "Ba'da Shubuh" : "Ba'da Ashar" ); ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['keterangan']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>

@@ -89,7 +89,7 @@ var addFormGroup  = function (event) {
                                           <option value="">-- Pilih Tanggal Ta'lim --</option>
                                                         <?php $t = tampilTalimForUdzurRoleMhs($nim);
                                                           foreach($t as $row){
-                                                            echo '<option value="'.$row['id_talim'].'">'.date('d/m/Y', strtotime($row['tanggal'])).' - '.$row['deskripsi'].'</option>';
+                                                            echo '<option value="'.$row['id_talim'].'">'.date('D - d M Y', strtotime($row['tanggal'])).' ('.$row['deskripsi'].')</option>';
                                                           } 
                                                         ?>
                                         </select> 

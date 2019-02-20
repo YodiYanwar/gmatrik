@@ -63,7 +63,7 @@ var addFormGroup  = function (event) {
                                 <tr>
                                   <td><?php echo $no; ?></td>
                                   <td><?php echo date('d M Y', strtotime($row['tanggal'])); ?></td>
-                                  <td><?php echo $row['tahsin']; ?></td>
+                                  <td><?php echo ($row['tahsin'] == 'badashubuh' ? "Ba'da Shubuh" : "Ba'da Ashar" ); ?></td>
                                   <td><?php echo $row['udzur']; ?></td>
                                   <td><?php echo $row['keterangan']; ?></td>
                                   <td><?php echo $row['diajukan']; ?></td>
@@ -91,7 +91,7 @@ var addFormGroup  = function (event) {
                                           <option value="">-- Pilih Tahsin --</option>
                                                         <?php $t = tampilTahsinForUdzurRoleMhs($nim);
                                                           foreach($t as $row){
-                                                            echo '<option value="'.$row['id_tahsin'].'">'.$row['tahsin'].' - '.date('d/m/Y', strtotime($row['tanggal'])).'</option>';
+                                                            echo '<option value="'.$row['id_tahsin'].'">'.($row['tahsin'] == 'badashubuh' ? "Ba'da Shubuh" : "Ba'da Ashar" ).' ('.date('D - d M Y', strtotime($row['tanggal'])).')</option>';
                                                           } 
                                                         ?>
                                         </select> 

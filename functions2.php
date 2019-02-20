@@ -46,7 +46,7 @@
 	}		
 
 	function tampilTahsinForUdzurRoleMhs($nim){
-		$ambildata = mysql_query("SELECT t.id_tahsin, t.tanggal, t.tahsin, t.deskripsi FROM tahsin t WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) ORDER BY t.tanggal DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT t.id_tahsin, t.tahsin, t.id_pekan, t.id_pembina, t.tanggal, t.deskripsi FROM tahsin t WHERE NOT EXISTS ( SELECT 1 FROM presensi_tahsin pt INNER JOIN mahasiswa m ON pt.nim = m.nim WHERE pt.id_tahsin = t.id_tahsin AND pt.nim = $nim ) ORDER BY t.tanggal DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
@@ -55,7 +55,7 @@
 	}		
 
 	function tampilTalimForUdzurRoleMhs($nim){
-		$ambildata = mysql_query("SELECT t.id_talim, t.tanggal, t.deskripsi  FROM talim t WHERE t.id_pembina = (SELECT m.id_pembina FROM mahasiswa m WHERE m.nim = $nim) ORDER BY t.tanggal DESC") or die(mysql_error());
+		$ambildata = mysql_query("SELECT t.id_talim, t.id_pekan, t.id_pembina, t.tanggal, t.deskripsi FROM talim t WHERE NOT EXISTS ( SELECT 1 FROM presensi_talim pt INNER JOIN mahasiswa m ON pt.nim = m.nim WHERE pt.id_talim = t.id_talim AND pt.nim = $nim ) ORDER BY t.tanggal DESC") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
 			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
 				$data[] = $ad;
