@@ -37,7 +37,7 @@
                                 <tr> 
                                   <td align="center"> 
                                     <font face="Times New Roman, Times, serif"> 
-                                        <font size="4"><b>Laporan Nilai Presensi Shalat</b></font> <br/>
+                                        <font size="4"><b>Laporan Nilai Presensi Ta'lim</b></font> <br/>
                                         <font size="3">Pekan ke 
                                           <?php 
                                             $pekan = tampilPekanById($idPekan);
@@ -65,7 +65,7 @@
                                         <br /></b> </td>
                                 </tr>
                               </table>
-                                <table border="1" bordercolor="#333333" style="border-collapse: collapse;">
+                                <table width="900" border="1" bordercolor="#333333" style="border-collapse: collapse;">
                                   <thead>
                                     <tr>
                                       <th>No</th>
@@ -73,7 +73,6 @@
                                       <th>Nama</th>
                                       <th>Perolehan Presensi</th>
                                       <th>Jumlah Udzur</th>
-                                      <th>Dispensasi Jadwal Pulang</th>
                                       <th>Target</th>
                                       <th>Nilai</th>
                                     </tr>
@@ -81,7 +80,7 @@
                                       <tbody>
                                     <?php 
                                       $no = 1;
-                                      $nilai = tampilNilaiShalatByPekanByPembina($idPekan, $idPembina);
+                                      $nilai = tampilNilaiTalimByPekanByPembina($idPekan, $idPembina);
                                       foreach($nilai as $row){
                                      ?>
                                     <tr>
@@ -90,7 +89,6 @@
                                       <td><?php echo $row['nama']; ?></td>
                                       <td align="center"><?php echo $row['total']; ?></td>
                                       <td align="center"><?php echo $row['jmlu']; ?></td>
-                                      <td align="center"><?php echo $row['jplg']; ?></td>
                                       <td align="center"><?php echo $row['target2']; ?></td>
                                       <td align="center"><?php echo $row['nilai']; ?></td>
                                     </tr>

@@ -37,7 +37,7 @@
                                 <tr> 
                                   <td align="center"> 
                                     <font face="Times New Roman, Times, serif"> 
-                                        <font size="4"><b>Laporan Nilai Presensi Shalat</b></font> <br/>
+                                        <font size="4"><b>Laporan Nilai Presensi Total</b></font> <br/>
                                         <font size="3">Pekan ke 
                                           <?php 
                                             $pekan = tampilPekanById($idPekan);
@@ -65,33 +65,31 @@
                                         <br /></b> </td>
                                 </tr>
                               </table>
-                                <table border="1" bordercolor="#333333" style="border-collapse: collapse;">
+                                <table width="900" border="1" bordercolor="#333333" style="border-collapse: collapse;">
                                   <thead>
                                     <tr>
                                       <th>No</th>
                                       <th>NIM</th>
                                       <th>Nama</th>
-                                      <th>Perolehan Presensi</th>
-                                      <th>Jumlah Udzur</th>
-                                      <th>Dispensasi Jadwal Pulang</th>
-                                      <th>Target</th>
-                                      <th>Nilai</th>
+                                      <th>Shalat</th>
+                                      <th>Ta'lim</th>
+                                      <th>Tahsin/Tahfidz</th>
+                                      <th>Nilai Total</th>
                                     </tr>
                                   </thead>
                                       <tbody>
                                     <?php 
                                       $no = 1;
-                                      $nilai = tampilNilaiShalatByPekanByPembina($idPekan, $idPembina);
+                                      $nilai = tampilNilaiTotalnByPekanByPembina($idPekan, $idPembina);
                                       foreach($nilai as $row){
                                      ?>
                                     <tr>
                                       <td><?php echo $no; ?></td>
                                       <td><?php echo $row['nim']; ?></td>
                                       <td><?php echo $row['nama']; ?></td>
-                                      <td align="center"><?php echo $row['total']; ?></td>
-                                      <td align="center"><?php echo $row['jmlu']; ?></td>
-                                      <td align="center"><?php echo $row['jplg']; ?></td>
-                                      <td align="center"><?php echo $row['target2']; ?></td>
+                                      <td align="center"><?php echo $row['shalat']; ?></td>
+                                      <td align="center"><?php echo $row['talim']; ?></td>
+                                      <td align="center"><?php echo $row['tahsin']; ?></td>
                                       <td align="center"><?php echo $row['nilai']; ?></td>
                                     </tr>
                                     <?php $no++; } ?>
