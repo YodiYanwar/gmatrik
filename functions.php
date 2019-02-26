@@ -68,6 +68,15 @@
 		}		
 	}
 
+	function tampilPembinaById($idPembina){
+		$ambildata = mysql_query("SELECT p.* FROM pembina_mahasiswa p WHERE id_pembina = $idPembina") or die(mysql_error());
+		if (mysql_num_rows($ambildata) > 0) {
+			while ($ad = mysql_fetch_assoc($ambildata)) // Perulangan while ini JANGAN pake {}
+				$data[] = $ad;
+				return $data;
+		}	
+	}	
+
 	function tampilUsers(){
 		$ambildata = mysql_query("SELECT * FROM users ORDER BY id_user") or die(mysql_error());
 		if (mysql_num_rows($ambildata) > 0) {
