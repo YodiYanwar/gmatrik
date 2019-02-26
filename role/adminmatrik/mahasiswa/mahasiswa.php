@@ -20,6 +20,7 @@
                         <div class="header">
                           <h2>DATA MAHASISWA &nbsp;&nbsp;&nbsp;
                             <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#tambahDataMahasiswa" title="Tambah Data Mahasiswa"><i class="material-icons">add</i><span>TAMBAH DATA</span></button>
+                            <!-- <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#importMhsModal" title="Import Database Mahasiswa"><i class="material-icons">get_app</i><span>IMPORT DATA</span></button> -->
                             <!-- <button class="btn btn-sm btn-default waves-effect" data-toggle="modal" data-target="#importMhsModal" title="Tambah Data Mahasiswa"><i class="material-icons">get_app</i><span>IMPORT DATA</span></button> -->
                           </h2>
                         </div>
@@ -302,10 +303,10 @@
         // echo "<script>document.location='index.php?page=mahasiswa'</script>";
       }
 
-/*      if (isset($_POST['importMahasiswa'])) {
+      if (isset($_POST['importMahasiswa'])) {
         importMahasiswa($_POST['angkatan']);
         echo "<script>document.location='index.php?page=mahasiswa'</script>";
-      }*/
+      }
     ?>
 
     </section>
