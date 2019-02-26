@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2019 at 10:48 AM
+-- Generation Time: Feb 26, 2019 at 03:57 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -2225,6 +2225,74 @@ CREATE TABLE `presensi_tahsin` (
   `nim` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `presensi_tahsin`
+--
+
+INSERT INTO `presensi_tahsin` (`id_tahsin`, `nim`) VALUES
+(3, 18108021),
+(3, 18103073),
+(3, 18104021),
+(3, 18104002),
+(3, 18108022),
+(3, 18101057),
+(3, 18108012),
+(3, 18101187),
+(3, 18103017),
+(3, 18102024),
+(3, 18102061),
+(3, 18103003),
+(4, 18101118),
+(4, 18108021),
+(4, 18108006),
+(4, 18101098),
+(4, 18103073),
+(4, 18104021),
+(4, 18104002),
+(4, 18104005),
+(4, 18108022),
+(4, 18101057),
+(4, 18101187),
+(4, 18101021),
+(4, 18103017),
+(4, 18102024),
+(4, 18103009),
+(4, 18101008),
+(4, 18103003),
+(5, 18101118),
+(5, 18108021),
+(5, 18108006),
+(5, 18103073),
+(5, 18104021),
+(5, 18104005),
+(5, 18108022),
+(5, 18101057),
+(5, 18101187),
+(5, 18101021),
+(5, 18102024),
+(5, 18103009),
+(5, 18101008),
+(5, 18103003),
+(6, 18101118),
+(6, 18108021),
+(6, 18108006),
+(6, 18101098),
+(6, 18103073),
+(6, 18104021),
+(6, 18104002),
+(6, 18104005),
+(6, 18108022),
+(6, 18101057),
+(6, 18108012),
+(6, 18101187),
+(6, 18101021),
+(6, 18103017),
+(6, 18102024),
+(6, 18103009),
+(6, 18102061),
+(6, 18101008),
+(6, 18103003);
+
 -- --------------------------------------------------------
 
 --
@@ -2235,6 +2303,62 @@ CREATE TABLE `presensi_talim` (
   `id_talim` int(5) NOT NULL,
   `nim` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `presensi_talim`
+--
+
+INSERT INTO `presensi_talim` (`id_talim`, `nim`) VALUES
+(4, 18101118),
+(4, 18108021),
+(4, 18108006),
+(4, 18101098),
+(4, 18103073),
+(4, 18104021),
+(4, 18104002),
+(4, 18104005),
+(4, 18108022),
+(4, 18101057),
+(4, 18108012),
+(4, 18101187),
+(4, 18101021),
+(4, 18103017),
+(4, 18102024),
+(4, 18103009),
+(4, 18102061),
+(4, 18101008),
+(4, 18103003),
+(5, 18108021),
+(5, 18108006),
+(5, 18103073),
+(5, 18104021),
+(5, 18104002),
+(5, 18104005),
+(5, 18108022),
+(5, 18101057),
+(5, 18108012),
+(5, 18101021),
+(5, 18103017),
+(5, 18102024),
+(5, 18103009),
+(5, 18102061),
+(5, 18101008),
+(5, 18103003),
+(6, 18101118),
+(6, 18108021),
+(6, 18101098),
+(6, 18103073),
+(6, 18104021),
+(6, 18104005),
+(6, 18108022),
+(6, 18101057),
+(6, 18108012),
+(6, 18101021),
+(6, 18103017),
+(6, 18102024),
+(6, 18103009),
+(6, 18102061),
+(6, 18101008);
 
 -- --------------------------------------------------------
 
@@ -2272,6 +2396,16 @@ CREATE TABLE `tahsin` (
   `deskripsi` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tahsin`
+--
+
+INSERT INTO `tahsin` (`id_tahsin`, `id_pekan`, `id_pembina`, `tahsin`, `tanggal`, `deskripsi`) VALUES
+(3, 1, 11, 'badashubuh', '2019-02-15', 'Makhrojul Khuruf 1'),
+(4, 1, 11, 'badaashar', '2019-02-15', 'Makhrojul Khuruf 2'),
+(5, 1, 11, 'badashubuh', '2019-02-16', 'Makhrojul Khuruf 3'),
+(6, 1, 11, 'badaashar', '2019-02-18', 'Makhrojul Khuruf 4');
+
 -- --------------------------------------------------------
 
 --
@@ -2286,6 +2420,15 @@ CREATE TABLE `talim` (
   `tanggal` date NOT NULL,
   `deskripsi` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `talim`
+--
+
+INSERT INTO `talim` (`id_talim`, `id_pekan`, `id_pembina`, `talim`, `tanggal`, `deskripsi`) VALUES
+(4, 1, 11, '', '2019-02-18', 'Sirah Nabawiyah 2'),
+(5, 1, 11, '', '2019-02-21', 'Sirah Nabawiyah 2'),
+(6, 1, 11, '', '2019-02-20', '');
 
 -- --------------------------------------------------------
 
@@ -2361,7 +2504,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `level`, `terakhir_login`) VALUES
-(1, 'adminmatrik', 'bismillah', 0, 1, '2019-02-26 15:48:58'),
+(1, 'adminmatrik', 'bismillah', 0, 1, '2019-02-26 20:19:34'),
 (4, 'hasan', 'hasan123', 0, 4, NULL),
 (5, 'ismi', 'd96AxT0DyT', 1, 2, '2019-01-31 15:56:24'),
 (6, 'Arfin', 'Ymd5t517g4', 1, 2, NULL),
@@ -2372,7 +2515,7 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `lev
 (11, 'Rizki', 'aE8T82k5A7', 1, 2, NULL),
 (12, 'Putri', 'mbSG2X7o3E', 1, 2, NULL),
 (13, 'Adita', '300iR65MOI', 1, 2, NULL),
-(14, 'Alfrida', 'fu5Pw00wQY', 1, 2, NULL),
+(14, 'Alfrida', 'alfrida123', 0, 2, '2019-02-26 21:29:20'),
 (15, 'Sitty', 'FF8sS4aFpR', 1, 2, NULL),
 (16, 'Lilik', 'ODMo4IddVT', 1, 2, '2019-02-01 22:28:42'),
 (17, 'Dzikrina', 'xzhDNDO8C0', 1, 2, NULL),
@@ -2923,12 +3066,12 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `tahsin`
 --
 ALTER TABLE `tahsin`
-  MODIFY `id_tahsin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tahsin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `talim`
 --
 ALTER TABLE `talim`
-  MODIFY `id_talim` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_talim` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `udzur_shalat`
 --
