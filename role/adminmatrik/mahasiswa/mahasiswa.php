@@ -300,7 +300,7 @@
 
       if (isset($_POST['tambahMahasiswa'])) {
         tambahMahasiswa($_POST['nim'], $_POST['idPembina'], $_POST['nama'], $_POST['gender'], $_POST['angkatan'], $_POST['kotaasal'], $_POST['telepon']);
-        // echo "<script>document.location='index.php?page=mahasiswa'</script>";
+        echo "<script>document.location='index.php?page=mahasiswa'</script>";
       }
 
       if (isset($_POST['importMahasiswa'])) {
