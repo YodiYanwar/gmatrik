@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2019 at 11:04 AM
+-- Generation Time: Mar 08, 2019 at 04:40 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -138,7 +138,7 @@ INSERT INTO `mahasiswa` (`nim`, `id_user`, `id_pembina`, `nama`, `gender`, `angk
 (18101058, 548, 7, 'Hafizh Muhammad Fiqri', 'Ikhwan', 18, '', '', 1),
 (18101059, 516, 15, 'Fadhilah Putri', 'Akhwat', 18, '', '', 1),
 (18101060, 749, 15, 'Suci Ariyanti', 'Akhwat', 18, '', '', 1),
-(18101061, 746, NULL, 'Shusuka Nilta Salsabila', NULL, 18, NULL, NULL, 1),
+(18101061, 746, 20, 'Shusuka Nilta Salsabila', 'Akhwat', 18, 'Bandung', '08966874823', 1),
 (18101062, 674, 15, 'Nuraviva Azzahra', 'Akhwat', 18, '', '', 1),
 (18101064, 486, 2, 'Billahi Alfa Aqsama', 'Akhwat', 18, '', '', 1),
 (18101066, 542, 2, 'Ghaissani Nursabrina Wi', 'Akhwat', 18, '', '', 1),
@@ -205,7 +205,7 @@ INSERT INTO `mahasiswa` (`nim`, `id_user`, `id_pembina`, `nama`, `gender`, `angk
 (18101129, 718, 14, 'Rosita Sariu', 'Akhwat', 18, '', '', 1),
 (18101130, 681, 12, 'Nurul Khofifah', 'Akhwat', 18, '', '', 1),
 (18101131, 786, 2, 'Zahratun Nisa', 'Akhwat', 18, '', '', 1),
-(18101132, 778, NULL, 'Wimala Hermitasari P', NULL, 18, NULL, NULL, 1),
+(18101132, 778, 20, 'Wimala Hermitasari P', 'Akhwat', 18, 'Bandung', '08966874823', 1),
 (18101133, 550, 5, 'Haikal Malik Zulfan', 'Ikhwan', 18, '', '', 1),
 (18101134, 422, 3, 'Ahmad Muhaimin', 'Ikhwan', 18, '', '', 1),
 (18101135, 763, 15, 'Tazkiyah Delya Faiza Us', 'Akhwat', 18, '', '', 1),
@@ -218,7 +218,7 @@ INSERT INTO `mahasiswa` (`nim`, `id_user`, `id_pembina`, `nama`, `gender`, `angk
 (18101142, 644, 17, 'Muhammad Redzky Kemal S', 'Ikhwan', 18, '', '', 1),
 (18101143, 576, 10, 'Ishmah Azzahra', 'Akhwat', 18, '', '', 1),
 (18101144, 424, 3, 'Ahmad Zulhamsyah', 'Ikhwan', 18, '', '', 1),
-(18101145, 441, NULL, 'Alvy Nur \'salimah', NULL, 18, NULL, NULL, 1),
+(18101145, 441, 14, 'Alvy Nur salimah', 'Akhwat', 18, 'Bandung', '08966874823', 1),
 (18101146, 625, 19, 'Muhammad Faraghy Hasan', 'Ikhwan', 18, '', '', 1),
 (18101147, 414, 3, 'Aditya Zuhal Pratama', 'Ikhwan', 18, '', '', 1),
 (18101148, 618, 19, 'Muhammad Ammar', 'Ikhwan', 18, '', '', 1),
@@ -4065,7 +4065,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `level`, `terakhir_login`) VALUES
-(1, 'adminmatrik', 'bismillah', 0, 1, '2019-03-04 08:59:13'),
+(1, 'adminmatrik', 'bismillah', 0, 1, '2019-03-08 10:18:29'),
 (4, 'hasan', 'hasan123', 0, 4, NULL),
 (5, 'ismi', 'd96AxT0DyT', 1, 2, '2019-01-31 15:56:24'),
 (6, 'Arfin', 'Ymd5t517g4', 1, 2, NULL),
@@ -4477,7 +4477,10 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `password_default`, `lev
 (792, '17101192', 'i6GF0Vin9d', 1, 3, NULL),
 (793, '17101192', 'P6z2zfu3y0', 1, 3, NULL),
 (794, '17103047', 'hLR8F96eMW', 1, 3, NULL),
-(795, '17103047', '463K96I0G6', 1, 3, NULL);
+(795, '17103047', '463K96I0G6', 1, 3, NULL),
+(796, '18101061', 'wFLIX4kBrt', 1, 3, NULL),
+(799, '18101132', 'OcvQX1WC9E', 1, 3, NULL),
+(800, '18101145', 'ZRtQ14RVPd', 1, 3, NULL);
 
 --
 -- Indexes for dumped tables
@@ -4656,7 +4659,7 @@ ALTER TABLE `udzur_talim`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=796;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=801;
 --
 -- Constraints for dumped tables
 --
